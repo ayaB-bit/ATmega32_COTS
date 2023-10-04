@@ -156,6 +156,18 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="MCAL\ADC\ADC_config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\ADC_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\ADC_private.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\ADC_program.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="MCAL\DIO\DIO_config.h">
       <SubType>compile</SubType>
     </Compile>
@@ -166,6 +178,27 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\DIO\DIO_program.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\EXTI\EXTI_config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\EXTI\EXTI_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\EXTI\EXTI_private.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\EXTI\EXTI_program.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\GIE\GIE_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\GIE\GIE_private.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\GIE\GIE_program.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\PORT\PORT_config.h">
@@ -185,9 +218,12 @@
     <Folder Include="HAL" />
     <Folder Include="HAL\LCD" />
     <Folder Include="HAL\KEYPAD" />
+    <Folder Include="LIB\" />
     <Folder Include="MCAL" />
     <Folder Include="MCAL\DIO" />
-    <Folder Include="LIB" />
+    <Folder Include="MCAL\EXTI" />
+    <Folder Include="MCAL\GIE" />
+    <Folder Include="MCAL\ADC" />
     <Folder Include="MCAL\PORT" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />

@@ -3,40 +3,40 @@ COTS.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000077e  00000000  00000000  00000094  2**1
+  0 .text         000002e4  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000020  00800060  0000077e  00000812  2**0
+  1 .data         00000000  00800060  00800060  00000358  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000001  00800080  00800080  00000832  2**0
+  2 .bss          0000000c  00800060  00800060  00000358  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000832  2**0
+  3 .comment      00000030  00000000  00000000  00000358  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000864  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000388  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000f8  00000000  00000000  000008a0  2**0
+  5 .debug_aranges 00000180  00000000  00000000  000003c4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000379c  00000000  00000000  00000998  2**0
+  6 .debug_info   000010d2  00000000  00000000  00000544  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000931  00000000  00000000  00004134  2**0
+  7 .debug_abbrev 00000990  00000000  00000000  00001616  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000122c  00000000  00000000  00004a65  2**0
+  8 .debug_line   00000d56  00000000  00000000  00001fa6  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000234  00000000  00000000  00005c94  2**2
+  9 .debug_frame  000003c4  00000000  00000000  00002cfc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000678  00000000  00000000  00005ec8  2**0
+ 10 .debug_str    000007af  00000000  00000000  000030c0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001390  00000000  00000000  00006540  2**0
+ 11 .debug_loc    00000f45  00000000  00000000  0000386f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000a8  00000000  00000000  000078d0  2**0
+ 12 .debug_ranges 00000138  00000000  00000000  000047b4  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   4:	0c 94 e4 00 	jmp	0x1c8	; 0x1c8 <__vector_1>
+   8:	0c 94 0d 01 	jmp	0x21a	; 0x21a <__vector_2>
+   c:	0c 94 36 01 	jmp	0x26c	; 0x26c <__vector_3>
   10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
@@ -49,7 +49,7 @@ Disassembly of section .text:
   34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 9a 00 	jmp	0x134	; 0x134 <__vector_16>
   44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
@@ -67,18 +67,18 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ee e7       	ldi	r30, 0x7E	; 126
-  68:	f7 e0       	ldi	r31, 0x07	; 7
+  66:	e4 ee       	ldi	r30, 0xE4	; 228
+  68:	f2 e0       	ldi	r31, 0x02	; 2
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
-  70:	a0 38       	cpi	r26, 0x80	; 128
+  70:	a0 36       	cpi	r26, 0x60	; 96
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
 
 00000076 <__do_clear_bss>:
   76:	20 e0       	ldi	r18, 0x00	; 0
-  78:	a0 e8       	ldi	r26, 0x80	; 128
+  78:	a0 e6       	ldi	r26, 0x60	; 96
   7a:	b0 e0       	ldi	r27, 0x00	; 0
   7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
 
@@ -86,1339 +86,453 @@ Disassembly of section .text:
   7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-  80:	a1 38       	cpi	r26, 0x81	; 129
+  80:	ac 36       	cpi	r26, 0x6C	; 108
   82:	b2 07       	cpc	r27, r18
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 df 02 	call	0x5be	; 0x5be <main>
-  8a:	0c 94 bd 03 	jmp	0x77a	; 0x77a <_exit>
+  86:	0e 94 4f 00 	call	0x9e	; 0x9e <main>
+  8a:	0c 94 70 01 	jmp	0x2e0	; 0x2e0 <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-00000092 <KEYPAD_enuGetPressedKey>:
-#include "KEYPAD_private.h"
-
-#include "util/delay.h"
-
-u8 KEYPAD_enuGetPressedKey(void)
-{
-  92:	cf 92       	push	r12
-  94:	df 92       	push	r13
-  96:	ef 92       	push	r14
-  98:	ff 92       	push	r15
-  9a:	0f 93       	push	r16
-  9c:	1f 93       	push	r17
-  9e:	cf 93       	push	r28
-  a0:	df 93       	push	r29
-  a2:	1f 92       	push	r1
-  a4:	cd b7       	in	r28, 0x3d	; 61
-  a6:	de b7       	in	r29, 0x3e	; 62
-	static u8 Local_Au8RowPin[]={R1_PIN, R2_PIN ,R3_PIN, R4_PIN};
-	 
-	static u8 Local_Au8ColPort[]={C1_PORT, C2_PORT ,C3_PORT, C4_PORT};
-	static u8 Local_Au8ColPin[]={C1_PIN, C2_PIN ,C3_PIN, C4_PIN};
-	
-	for(u8 col=0; col<4; col++)
-  a8:	00 e0       	ldi	r16, 0x00	; 0
-  aa:	4e c0       	rjmp	.+156    	; 0x148 <KEYPAD_enuGetPressedKey+0xb6>
-	{
-		//activate current col
-		DIO_enuSetPinValue(Local_Au8ColPort[col], Local_Au8ColPin[col], DIO_u8LOW);
-  ac:	c0 2e       	mov	r12, r16
-  ae:	d1 2c       	mov	r13, r1
-  b0:	d6 01       	movw	r26, r12
-  b2:	a4 58       	subi	r26, 0x84	; 132
-  b4:	bf 4f       	sbci	r27, 0xFF	; 255
-  b6:	f6 01       	movw	r30, r12
-  b8:	e8 58       	subi	r30, 0x88	; 136
-  ba:	ff 4f       	sbci	r31, 0xFF	; 255
-  bc:	40 e0       	ldi	r20, 0x00	; 0
-  be:	6c 91       	ld	r22, X
-  c0:	80 81       	ld	r24, Z
-  c2:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-		for(u8 row=0; row<4; row++)
-  c6:	10 e0       	ldi	r17, 0x00	; 0
-  c8:	31 c0       	rjmp	.+98     	; 0x12c <KEYPAD_enuGetPressedKey+0x9a>
-		{
-			//read current row
-			DIO_enuGetPinValue(Local_Au8RowPort[row], Local_Au8RowPin[row], &Local_u8PinState);
-  ca:	e1 2e       	mov	r14, r17
-  cc:	f1 2c       	mov	r15, r1
-  ce:	d7 01       	movw	r26, r14
-  d0:	ac 58       	subi	r26, 0x8C	; 140
-  d2:	bf 4f       	sbci	r27, 0xFF	; 255
-  d4:	f7 01       	movw	r30, r14
-  d6:	e0 59       	subi	r30, 0x90	; 144
-  d8:	ff 4f       	sbci	r31, 0xFF	; 255
-  da:	ae 01       	movw	r20, r28
-  dc:	4f 5f       	subi	r20, 0xFF	; 255
-  de:	5f 4f       	sbci	r21, 0xFF	; 255
-  e0:	6c 91       	ld	r22, X
-  e2:	80 81       	ld	r24, Z
-  e4:	0e 94 6d 03 	call	0x6da	; 0x6da <DIO_enuGetPinValue>
-			//check if pressed
-			if(Local_u8PinState == DIO_u8LOW)
-  e8:	89 81       	ldd	r24, Y+1	; 0x01
-  ea:	81 11       	cpse	r24, r1
-  ec:	1e c0       	rjmp	.+60     	; 0x12a <KEYPAD_enuGetPressedKey+0x98>
-			{
-				//_delay_ms(10);
-				Local_u8Pressed_Key = Local_Au8KeypadArrayVal[row][col];
-  ee:	c7 01       	movw	r24, r14
-  f0:	88 0f       	add	r24, r24
-  f2:	99 1f       	adc	r25, r25
-  f4:	88 0f       	add	r24, r24
-  f6:	99 1f       	adc	r25, r25
-  f8:	80 5a       	subi	r24, 0xA0	; 160
-  fa:	9f 4f       	sbci	r25, 0xFF	; 255
-  fc:	fc 01       	movw	r30, r24
-  fe:	ec 0d       	add	r30, r12
- 100:	fd 1d       	adc	r31, r13
- 102:	10 81       	ld	r17, Z
-				//busy waiting
-				while(Local_u8PinState == DIO_u8LOW)
- 104:	0d c0       	rjmp	.+26     	; 0x120 <KEYPAD_enuGetPressedKey+0x8e>
-				{
-					DIO_enuGetPinValue(Local_Au8RowPort[row], Local_Au8RowPin[row], &Local_u8PinState);
- 106:	ae 01       	movw	r20, r28
- 108:	4f 5f       	subi	r20, 0xFF	; 255
- 10a:	5f 4f       	sbci	r21, 0xFF	; 255
- 10c:	f7 01       	movw	r30, r14
- 10e:	ec 58       	subi	r30, 0x8C	; 140
- 110:	ff 4f       	sbci	r31, 0xFF	; 255
- 112:	60 81       	ld	r22, Z
- 114:	f7 01       	movw	r30, r14
- 116:	e0 59       	subi	r30, 0x90	; 144
- 118:	ff 4f       	sbci	r31, 0xFF	; 255
- 11a:	80 81       	ld	r24, Z
- 11c:	0e 94 6d 03 	call	0x6da	; 0x6da <DIO_enuGetPinValue>
-			if(Local_u8PinState == DIO_u8LOW)
-			{
-				//_delay_ms(10);
-				Local_u8Pressed_Key = Local_Au8KeypadArrayVal[row][col];
-				//busy waiting
-				while(Local_u8PinState == DIO_u8LOW)
- 120:	99 81       	ldd	r25, Y+1	; 0x01
- 122:	99 23       	and	r25, r25
- 124:	81 f3       	breq	.-32     	; 0x106 <KEYPAD_enuGetPressedKey+0x74>
-				{
-					DIO_enuGetPinValue(Local_Au8RowPort[row], Local_Au8RowPin[row], &Local_u8PinState);
-				}
-				return Local_u8Pressed_Key;
- 126:	81 2f       	mov	r24, r17
- 128:	13 c0       	rjmp	.+38     	; 0x150 <KEYPAD_enuGetPressedKey+0xbe>
-	
-	for(u8 col=0; col<4; col++)
-	{
-		//activate current col
-		DIO_enuSetPinValue(Local_Au8ColPort[col], Local_Au8ColPin[col], DIO_u8LOW);
-		for(u8 row=0; row<4; row++)
- 12a:	1f 5f       	subi	r17, 0xFF	; 255
- 12c:	14 30       	cpi	r17, 0x04	; 4
- 12e:	68 f2       	brcs	.-102    	; 0xca <KEYPAD_enuGetPressedKey+0x38>
-				}
-				return Local_u8Pressed_Key;
-			}
-		}
-		//deactivate current col
-		DIO_enuSetPinValue(Local_Au8ColPort[col], Local_Au8ColPin[col], DIO_u8HIGH);
- 130:	d6 01       	movw	r26, r12
- 132:	a4 58       	subi	r26, 0x84	; 132
- 134:	bf 4f       	sbci	r27, 0xFF	; 255
- 136:	f6 01       	movw	r30, r12
- 138:	e8 58       	subi	r30, 0x88	; 136
- 13a:	ff 4f       	sbci	r31, 0xFF	; 255
- 13c:	41 e0       	ldi	r20, 0x01	; 1
- 13e:	6c 91       	ld	r22, X
- 140:	80 81       	ld	r24, Z
- 142:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	static u8 Local_Au8RowPin[]={R1_PIN, R2_PIN ,R3_PIN, R4_PIN};
-	 
-	static u8 Local_Au8ColPort[]={C1_PORT, C2_PORT ,C3_PORT, C4_PORT};
-	static u8 Local_Au8ColPin[]={C1_PIN, C2_PIN ,C3_PIN, C4_PIN};
-	
-	for(u8 col=0; col<4; col++)
- 146:	0f 5f       	subi	r16, 0xFF	; 255
- 148:	04 30       	cpi	r16, 0x04	; 4
- 14a:	08 f4       	brcc	.+2      	; 0x14e <KEYPAD_enuGetPressedKey+0xbc>
- 14c:	af cf       	rjmp	.-162    	; 0xac <KEYPAD_enuGetPressedKey+0x1a>
-		}
-		//deactivate current col
-		DIO_enuSetPinValue(Local_Au8ColPort[col], Local_Au8ColPin[col], DIO_u8HIGH);
-	}
-	
-	return Local_u8Pressed_Key;
- 14e:	8f ef       	ldi	r24, 0xFF	; 255
- 150:	0f 90       	pop	r0
- 152:	df 91       	pop	r29
- 154:	cf 91       	pop	r28
- 156:	1f 91       	pop	r17
- 158:	0f 91       	pop	r16
- 15a:	ff 90       	pop	r15
- 15c:	ef 90       	pop	r14
- 15e:	df 90       	pop	r13
- 160:	cf 90       	pop	r12
- 162:	08 95       	ret
-
-00000164 <LCD_enuInit>:
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
- 164:	8f e0       	ldi	r24, 0x0F	; 15
- 166:	97 e2       	ldi	r25, 0x27	; 39
- 168:	01 97       	sbiw	r24, 0x01	; 1
- 16a:	f1 f7       	brne	.-4      	; 0x168 <LCD_enuInit+0x4>
- 16c:	00 c0       	rjmp	.+0      	; 0x16e <LCD_enuInit+0xa>
- 16e:	00 00       	nop
-
-static inline void LCD_invidSendCommand(u8 Copy_u8Command)
-{
-	
-	//set rs
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8LOW);
- 170:	40 e0       	ldi	r20, 0x00	; 0
- 172:	60 e0       	ldi	r22, 0x00	; 0
- 174:	80 e0       	ldi	r24, 0x00	; 0
- 176:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//set rw, EN low
-	DIO_enuSetPinValue(RW_PORT, RW_PIN, DIO_u8LOW);
- 17a:	40 e0       	ldi	r20, 0x00	; 0
- 17c:	61 e0       	ldi	r22, 0x01	; 1
- 17e:	80 e0       	ldi	r24, 0x00	; 0
- 180:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 184:	40 e0       	ldi	r20, 0x00	; 0
- 186:	62 e0       	ldi	r22, 0x02	; 2
- 188:	80 e0       	ldi	r24, 0x00	; 0
- 18a:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//write data
-	DIO_enuSetPinValue(D7_PORT, D7_PIN, ((Copy_u8Command)>>7)&1);
- 18e:	40 e0       	ldi	r20, 0x00	; 0
- 190:	67 e0       	ldi	r22, 0x07	; 7
- 192:	81 e0       	ldi	r24, 0x01	; 1
- 194:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D6_PORT, D6_PIN, ((Copy_u8Command)>>6)&1);
- 198:	40 e0       	ldi	r20, 0x00	; 0
- 19a:	66 e0       	ldi	r22, 0x06	; 6
- 19c:	81 e0       	ldi	r24, 0x01	; 1
- 19e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Command)>>5)&1);
- 1a2:	41 e0       	ldi	r20, 0x01	; 1
- 1a4:	65 e0       	ldi	r22, 0x05	; 5
- 1a6:	81 e0       	ldi	r24, 0x01	; 1
- 1a8:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D4_PORT, D4_PIN, ((Copy_u8Command)>>4)&1);
- 1ac:	41 e0       	ldi	r20, 0x01	; 1
- 1ae:	64 e0       	ldi	r22, 0x04	; 4
- 1b0:	81 e0       	ldi	r24, 0x01	; 1
- 1b2:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D3_PORT, D3_PIN, ((Copy_u8Command)>>3)&1);
- 1b6:	41 e0       	ldi	r20, 0x01	; 1
- 1b8:	63 e0       	ldi	r22, 0x03	; 3
- 1ba:	81 e0       	ldi	r24, 0x01	; 1
- 1bc:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D2_PORT, D2_PIN, ((Copy_u8Command)>>2)&1);
- 1c0:	40 e0       	ldi	r20, 0x00	; 0
- 1c2:	62 e0       	ldi	r22, 0x02	; 2
- 1c4:	81 e0       	ldi	r24, 0x01	; 1
- 1c6:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D1_PORT, D1_PIN, ((Copy_u8Command)>>1)&1);
- 1ca:	40 e0       	ldi	r20, 0x00	; 0
- 1cc:	61 e0       	ldi	r22, 0x01	; 1
- 1ce:	81 e0       	ldi	r24, 0x01	; 1
- 1d0:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D0_PORT, D0_PIN, ((Copy_u8Command)>>0)&1);
- 1d4:	40 e0       	ldi	r20, 0x00	; 0
- 1d6:	60 e0       	ldi	r22, 0x00	; 0
- 1d8:	81 e0       	ldi	r24, 0x01	; 1
- 1da:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//EN latch
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
- 1de:	41 e0       	ldi	r20, 0x01	; 1
- 1e0:	62 e0       	ldi	r22, 0x02	; 2
- 1e2:	80 e0       	ldi	r24, 0x00	; 0
- 1e4:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 1e8:	83 ec       	ldi	r24, 0xC3	; 195
- 1ea:	99 e0       	ldi	r25, 0x09	; 9
- 1ec:	01 97       	sbiw	r24, 0x01	; 1
- 1ee:	f1 f7       	brne	.-4      	; 0x1ec <LCD_enuInit+0x88>
- 1f0:	00 c0       	rjmp	.+0      	; 0x1f2 <LCD_enuInit+0x8e>
- 1f2:	00 00       	nop
-	_delay_ms(10);
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 1f4:	40 e0       	ldi	r20, 0x00	; 0
- 1f6:	62 e0       	ldi	r22, 0x02	; 2
- 1f8:	80 e0       	ldi	r24, 0x00	; 0
- 1fa:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 1fe:	89 ef       	ldi	r24, 0xF9	; 249
- 200:	90 e0       	ldi	r25, 0x00	; 0
- 202:	01 97       	sbiw	r24, 0x01	; 1
- 204:	f1 f7       	brne	.-4      	; 0x202 <LCD_enuInit+0x9e>
- 206:	00 c0       	rjmp	.+0      	; 0x208 <LCD_enuInit+0xa4>
- 208:	00 00       	nop
-
-static inline void LCD_invidSendCommand(u8 Copy_u8Command)
-{
-	
-	//set rs
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8LOW);
- 20a:	40 e0       	ldi	r20, 0x00	; 0
- 20c:	60 e0       	ldi	r22, 0x00	; 0
- 20e:	80 e0       	ldi	r24, 0x00	; 0
- 210:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//set rw, EN low
-	DIO_enuSetPinValue(RW_PORT, RW_PIN, DIO_u8LOW);
- 214:	40 e0       	ldi	r20, 0x00	; 0
- 216:	61 e0       	ldi	r22, 0x01	; 1
- 218:	80 e0       	ldi	r24, 0x00	; 0
- 21a:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 21e:	40 e0       	ldi	r20, 0x00	; 0
- 220:	62 e0       	ldi	r22, 0x02	; 2
- 222:	80 e0       	ldi	r24, 0x00	; 0
- 224:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//write data
-	DIO_enuSetPinValue(D7_PORT, D7_PIN, ((Copy_u8Command)>>7)&1);
- 228:	40 e0       	ldi	r20, 0x00	; 0
- 22a:	67 e0       	ldi	r22, 0x07	; 7
- 22c:	81 e0       	ldi	r24, 0x01	; 1
- 22e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D6_PORT, D6_PIN, ((Copy_u8Command)>>6)&1);
- 232:	40 e0       	ldi	r20, 0x00	; 0
- 234:	66 e0       	ldi	r22, 0x06	; 6
- 236:	81 e0       	ldi	r24, 0x01	; 1
- 238:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Command)>>5)&1);
- 23c:	40 e0       	ldi	r20, 0x00	; 0
- 23e:	65 e0       	ldi	r22, 0x05	; 5
- 240:	81 e0       	ldi	r24, 0x01	; 1
- 242:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D4_PORT, D4_PIN, ((Copy_u8Command)>>4)&1);
- 246:	40 e0       	ldi	r20, 0x00	; 0
- 248:	64 e0       	ldi	r22, 0x04	; 4
- 24a:	81 e0       	ldi	r24, 0x01	; 1
- 24c:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D3_PORT, D3_PIN, ((Copy_u8Command)>>3)&1);
- 250:	41 e0       	ldi	r20, 0x01	; 1
- 252:	63 e0       	ldi	r22, 0x03	; 3
- 254:	81 e0       	ldi	r24, 0x01	; 1
- 256:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D2_PORT, D2_PIN, ((Copy_u8Command)>>2)&1);
- 25a:	41 e0       	ldi	r20, 0x01	; 1
- 25c:	62 e0       	ldi	r22, 0x02	; 2
- 25e:	81 e0       	ldi	r24, 0x01	; 1
- 260:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D1_PORT, D1_PIN, ((Copy_u8Command)>>1)&1);
- 264:	41 e0       	ldi	r20, 0x01	; 1
- 266:	61 e0       	ldi	r22, 0x01	; 1
- 268:	81 e0       	ldi	r24, 0x01	; 1
- 26a:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D0_PORT, D0_PIN, ((Copy_u8Command)>>0)&1);
- 26e:	41 e0       	ldi	r20, 0x01	; 1
- 270:	60 e0       	ldi	r22, 0x00	; 0
- 272:	81 e0       	ldi	r24, 0x01	; 1
- 274:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//EN latch
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
- 278:	41 e0       	ldi	r20, 0x01	; 1
- 27a:	62 e0       	ldi	r22, 0x02	; 2
- 27c:	80 e0       	ldi	r24, 0x00	; 0
- 27e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 282:	83 ec       	ldi	r24, 0xC3	; 195
- 284:	99 e0       	ldi	r25, 0x09	; 9
- 286:	01 97       	sbiw	r24, 0x01	; 1
- 288:	f1 f7       	brne	.-4      	; 0x286 <LCD_enuInit+0x122>
- 28a:	00 c0       	rjmp	.+0      	; 0x28c <LCD_enuInit+0x128>
- 28c:	00 00       	nop
-	_delay_ms(10);
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 28e:	40 e0       	ldi	r20, 0x00	; 0
- 290:	62 e0       	ldi	r22, 0x02	; 2
- 292:	80 e0       	ldi	r24, 0x00	; 0
- 294:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 298:	89 ef       	ldi	r24, 0xF9	; 249
- 29a:	90 e0       	ldi	r25, 0x00	; 0
- 29c:	01 97       	sbiw	r24, 0x01	; 1
- 29e:	f1 f7       	brne	.-4      	; 0x29c <LCD_enuInit+0x138>
- 2a0:	00 c0       	rjmp	.+0      	; 0x2a2 <LCD_enuInit+0x13e>
- 2a2:	00 00       	nop
-
-static inline void LCD_invidSendCommand(u8 Copy_u8Command)
-{
-	
-	//set rs
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8LOW);
- 2a4:	40 e0       	ldi	r20, 0x00	; 0
- 2a6:	60 e0       	ldi	r22, 0x00	; 0
- 2a8:	80 e0       	ldi	r24, 0x00	; 0
- 2aa:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//set rw, EN low
-	DIO_enuSetPinValue(RW_PORT, RW_PIN, DIO_u8LOW);
- 2ae:	40 e0       	ldi	r20, 0x00	; 0
- 2b0:	61 e0       	ldi	r22, 0x01	; 1
- 2b2:	80 e0       	ldi	r24, 0x00	; 0
- 2b4:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 2b8:	40 e0       	ldi	r20, 0x00	; 0
- 2ba:	62 e0       	ldi	r22, 0x02	; 2
- 2bc:	80 e0       	ldi	r24, 0x00	; 0
- 2be:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//write data
-	DIO_enuSetPinValue(D7_PORT, D7_PIN, ((Copy_u8Command)>>7)&1);
- 2c2:	40 e0       	ldi	r20, 0x00	; 0
- 2c4:	67 e0       	ldi	r22, 0x07	; 7
- 2c6:	81 e0       	ldi	r24, 0x01	; 1
- 2c8:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D6_PORT, D6_PIN, ((Copy_u8Command)>>6)&1);
- 2cc:	40 e0       	ldi	r20, 0x00	; 0
- 2ce:	66 e0       	ldi	r22, 0x06	; 6
- 2d0:	81 e0       	ldi	r24, 0x01	; 1
- 2d2:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Command)>>5)&1);
- 2d6:	40 e0       	ldi	r20, 0x00	; 0
- 2d8:	65 e0       	ldi	r22, 0x05	; 5
- 2da:	81 e0       	ldi	r24, 0x01	; 1
- 2dc:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D4_PORT, D4_PIN, ((Copy_u8Command)>>4)&1);
- 2e0:	40 e0       	ldi	r20, 0x00	; 0
- 2e2:	64 e0       	ldi	r22, 0x04	; 4
- 2e4:	81 e0       	ldi	r24, 0x01	; 1
- 2e6:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D3_PORT, D3_PIN, ((Copy_u8Command)>>3)&1);
- 2ea:	40 e0       	ldi	r20, 0x00	; 0
- 2ec:	63 e0       	ldi	r22, 0x03	; 3
- 2ee:	81 e0       	ldi	r24, 0x01	; 1
- 2f0:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D2_PORT, D2_PIN, ((Copy_u8Command)>>2)&1);
- 2f4:	40 e0       	ldi	r20, 0x00	; 0
- 2f6:	62 e0       	ldi	r22, 0x02	; 2
- 2f8:	81 e0       	ldi	r24, 0x01	; 1
- 2fa:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D1_PORT, D1_PIN, ((Copy_u8Command)>>1)&1);
- 2fe:	40 e0       	ldi	r20, 0x00	; 0
- 300:	61 e0       	ldi	r22, 0x01	; 1
- 302:	81 e0       	ldi	r24, 0x01	; 1
- 304:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D0_PORT, D0_PIN, ((Copy_u8Command)>>0)&1);
- 308:	41 e0       	ldi	r20, 0x01	; 1
- 30a:	60 e0       	ldi	r22, 0x00	; 0
- 30c:	81 e0       	ldi	r24, 0x01	; 1
- 30e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//EN latch
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
- 312:	41 e0       	ldi	r20, 0x01	; 1
- 314:	62 e0       	ldi	r22, 0x02	; 2
- 316:	80 e0       	ldi	r24, 0x00	; 0
- 318:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 31c:	83 ec       	ldi	r24, 0xC3	; 195
- 31e:	99 e0       	ldi	r25, 0x09	; 9
- 320:	01 97       	sbiw	r24, 0x01	; 1
- 322:	f1 f7       	brne	.-4      	; 0x320 <LCD_enuInit+0x1bc>
- 324:	00 c0       	rjmp	.+0      	; 0x326 <LCD_enuInit+0x1c2>
- 326:	00 00       	nop
-	_delay_ms(10);
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 328:	40 e0       	ldi	r20, 0x00	; 0
- 32a:	62 e0       	ldi	r22, 0x02	; 2
- 32c:	80 e0       	ldi	r24, 0x00	; 0
- 32e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 332:	83 ef       	ldi	r24, 0xF3	; 243
- 334:	91 e0       	ldi	r25, 0x01	; 1
- 336:	01 97       	sbiw	r24, 0x01	; 1
- 338:	f1 f7       	brne	.-4      	; 0x336 <LCD_enuInit+0x1d2>
- 33a:	00 c0       	rjmp	.+0      	; 0x33c <LCD_enuInit+0x1d8>
- 33c:	00 00       	nop
-
-static inline void LCD_invidSendCommand(u8 Copy_u8Command)
-{
-	
-	//set rs
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8LOW);
- 33e:	40 e0       	ldi	r20, 0x00	; 0
- 340:	60 e0       	ldi	r22, 0x00	; 0
- 342:	80 e0       	ldi	r24, 0x00	; 0
- 344:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//set rw, EN low
-	DIO_enuSetPinValue(RW_PORT, RW_PIN, DIO_u8LOW);
- 348:	40 e0       	ldi	r20, 0x00	; 0
- 34a:	61 e0       	ldi	r22, 0x01	; 1
- 34c:	80 e0       	ldi	r24, 0x00	; 0
- 34e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 352:	40 e0       	ldi	r20, 0x00	; 0
- 354:	62 e0       	ldi	r22, 0x02	; 2
- 356:	80 e0       	ldi	r24, 0x00	; 0
- 358:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//write data
-	DIO_enuSetPinValue(D7_PORT, D7_PIN, ((Copy_u8Command)>>7)&1);
- 35c:	40 e0       	ldi	r20, 0x00	; 0
- 35e:	67 e0       	ldi	r22, 0x07	; 7
- 360:	81 e0       	ldi	r24, 0x01	; 1
- 362:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D6_PORT, D6_PIN, ((Copy_u8Command)>>6)&1);
- 366:	40 e0       	ldi	r20, 0x00	; 0
- 368:	66 e0       	ldi	r22, 0x06	; 6
- 36a:	81 e0       	ldi	r24, 0x01	; 1
- 36c:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Command)>>5)&1);
- 370:	40 e0       	ldi	r20, 0x00	; 0
- 372:	65 e0       	ldi	r22, 0x05	; 5
- 374:	81 e0       	ldi	r24, 0x01	; 1
- 376:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D4_PORT, D4_PIN, ((Copy_u8Command)>>4)&1);
- 37a:	40 e0       	ldi	r20, 0x00	; 0
- 37c:	64 e0       	ldi	r22, 0x04	; 4
- 37e:	81 e0       	ldi	r24, 0x01	; 1
- 380:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D3_PORT, D3_PIN, ((Copy_u8Command)>>3)&1);
- 384:	40 e0       	ldi	r20, 0x00	; 0
- 386:	63 e0       	ldi	r22, 0x03	; 3
- 388:	81 e0       	ldi	r24, 0x01	; 1
- 38a:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D2_PORT, D2_PIN, ((Copy_u8Command)>>2)&1);
- 38e:	41 e0       	ldi	r20, 0x01	; 1
- 390:	62 e0       	ldi	r22, 0x02	; 2
- 392:	81 e0       	ldi	r24, 0x01	; 1
- 394:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D1_PORT, D1_PIN, ((Copy_u8Command)>>1)&1);
- 398:	40 e0       	ldi	r20, 0x00	; 0
- 39a:	61 e0       	ldi	r22, 0x01	; 1
- 39c:	81 e0       	ldi	r24, 0x01	; 1
- 39e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D0_PORT, D0_PIN, ((Copy_u8Command)>>0)&1);
- 3a2:	40 e0       	ldi	r20, 0x00	; 0
- 3a4:	60 e0       	ldi	r22, 0x00	; 0
- 3a6:	81 e0       	ldi	r24, 0x01	; 1
- 3a8:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//EN latch
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
- 3ac:	41 e0       	ldi	r20, 0x01	; 1
- 3ae:	62 e0       	ldi	r22, 0x02	; 2
- 3b0:	80 e0       	ldi	r24, 0x00	; 0
- 3b2:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 3b6:	83 ec       	ldi	r24, 0xC3	; 195
- 3b8:	99 e0       	ldi	r25, 0x09	; 9
- 3ba:	01 97       	sbiw	r24, 0x01	; 1
- 3bc:	f1 f7       	brne	.-4      	; 0x3ba <LCD_enuInit+0x256>
- 3be:	00 c0       	rjmp	.+0      	; 0x3c0 <LCD_enuInit+0x25c>
- 3c0:	00 00       	nop
-	_delay_ms(10);
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 3c2:	40 e0       	ldi	r20, 0x00	; 0
- 3c4:	62 e0       	ldi	r22, 0x02	; 2
- 3c6:	80 e0       	ldi	r24, 0x00	; 0
- 3c8:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-
-static inline void LCD_invidSendCommand(u8 Copy_u8Command)
-{
-	
-	//set rs
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8LOW);
- 3cc:	40 e0       	ldi	r20, 0x00	; 0
- 3ce:	60 e0       	ldi	r22, 0x00	; 0
- 3d0:	80 e0       	ldi	r24, 0x00	; 0
- 3d2:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//set rw, EN low
-	DIO_enuSetPinValue(RW_PORT, RW_PIN, DIO_u8LOW);
- 3d6:	40 e0       	ldi	r20, 0x00	; 0
- 3d8:	61 e0       	ldi	r22, 0x01	; 1
- 3da:	80 e0       	ldi	r24, 0x00	; 0
- 3dc:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 3e0:	40 e0       	ldi	r20, 0x00	; 0
- 3e2:	62 e0       	ldi	r22, 0x02	; 2
- 3e4:	80 e0       	ldi	r24, 0x00	; 0
- 3e6:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//write data
-	DIO_enuSetPinValue(D7_PORT, D7_PIN, ((Copy_u8Command)>>7)&1);
- 3ea:	41 e0       	ldi	r20, 0x01	; 1
- 3ec:	67 e0       	ldi	r22, 0x07	; 7
- 3ee:	81 e0       	ldi	r24, 0x01	; 1
- 3f0:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D6_PORT, D6_PIN, ((Copy_u8Command)>>6)&1);
- 3f4:	40 e0       	ldi	r20, 0x00	; 0
- 3f6:	66 e0       	ldi	r22, 0x06	; 6
- 3f8:	81 e0       	ldi	r24, 0x01	; 1
- 3fa:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Command)>>5)&1);
- 3fe:	40 e0       	ldi	r20, 0x00	; 0
- 400:	65 e0       	ldi	r22, 0x05	; 5
- 402:	81 e0       	ldi	r24, 0x01	; 1
- 404:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D4_PORT, D4_PIN, ((Copy_u8Command)>>4)&1);
- 408:	40 e0       	ldi	r20, 0x00	; 0
- 40a:	64 e0       	ldi	r22, 0x04	; 4
- 40c:	81 e0       	ldi	r24, 0x01	; 1
- 40e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D3_PORT, D3_PIN, ((Copy_u8Command)>>3)&1);
- 412:	41 e0       	ldi	r20, 0x01	; 1
- 414:	63 e0       	ldi	r22, 0x03	; 3
- 416:	81 e0       	ldi	r24, 0x01	; 1
- 418:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D2_PORT, D2_PIN, ((Copy_u8Command)>>2)&1);
- 41c:	41 e0       	ldi	r20, 0x01	; 1
- 41e:	62 e0       	ldi	r22, 0x02	; 2
- 420:	81 e0       	ldi	r24, 0x01	; 1
- 422:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D1_PORT, D1_PIN, ((Copy_u8Command)>>1)&1);
- 426:	41 e0       	ldi	r20, 0x01	; 1
- 428:	61 e0       	ldi	r22, 0x01	; 1
- 42a:	81 e0       	ldi	r24, 0x01	; 1
- 42c:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D0_PORT, D0_PIN, ((Copy_u8Command)>>0)&1);
- 430:	41 e0       	ldi	r20, 0x01	; 1
- 432:	60 e0       	ldi	r22, 0x00	; 0
- 434:	81 e0       	ldi	r24, 0x01	; 1
- 436:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//EN latch
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
- 43a:	41 e0       	ldi	r20, 0x01	; 1
- 43c:	62 e0       	ldi	r22, 0x02	; 2
- 43e:	80 e0       	ldi	r24, 0x00	; 0
- 440:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 444:	83 ec       	ldi	r24, 0xC3	; 195
- 446:	99 e0       	ldi	r25, 0x09	; 9
- 448:	01 97       	sbiw	r24, 0x01	; 1
- 44a:	f1 f7       	brne	.-4      	; 0x448 <__EEPROM_REGION_LENGTH__+0x48>
- 44c:	00 c0       	rjmp	.+0      	; 0x44e <__EEPROM_REGION_LENGTH__+0x4e>
- 44e:	00 00       	nop
-	_delay_ms(10);
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 450:	40 e0       	ldi	r20, 0x00	; 0
- 452:	62 e0       	ldi	r22, 0x02	; 2
- 454:	80 e0       	ldi	r24, 0x00	; 0
- 456:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	LCD_invidSendCommand(0x04);  //00000101
-	LCD_invidSendCommand(0x8f);
-	#endif
-	
-	return Local_enuErrorState;
+00000092 <ADC_ISR>:
+		 ADC_enuStartConversionAsynch(0, &APP_u8ADCReading, &ADC_ISR);
+    }
 }
- 45a:	80 e0       	ldi	r24, 0x00	; 0
- 45c:	08 95       	ret
-
-0000045e <LCD_enuSendChar>:
-
-ES_t LCD_enuSendChar(u8 Copy_u8Data)
+void ADC_ISR(void)
 {
- 45e:	cf 93       	push	r28
- 460:	c8 2f       	mov	r28, r24
-	ES_t Local_enuErrorState = ES_OK;
-	//set rs
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8HIGH);
- 462:	41 e0       	ldi	r20, 0x01	; 1
- 464:	60 e0       	ldi	r22, 0x00	; 0
- 466:	80 e0       	ldi	r24, 0x00	; 0
- 468:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	return Local_enuErrorState;
-}
+	DIO_enuSetPortValue(DIO_u8PORTC,APP_u8ADCReading);
+  92:	60 91 6b 00 	lds	r22, 0x006B	; 0x80006b <APP_u8ADCReading>
+  96:	82 e0       	ldi	r24, 0x02	; 2
+  98:	0e 94 ce 00 	call	0x19c	; 0x19c <DIO_enuSetPortValue>
+  9c:	08 95       	ret
 
-static inline void LCD_vidLatch(u8 Copy_u8Data)
-{
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8HIGH );
- 46c:	41 e0       	ldi	r20, 0x01	; 1
- 46e:	60 e0       	ldi	r22, 0x00	; 0
- 470:	80 e0       	ldi	r24, 0x00	; 0
- 472:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//set rw, EN low
-	DIO_enuSetPinValue(RW_PORT, RW_PIN, DIO_u8LOW);
- 476:	40 e0       	ldi	r20, 0x00	; 0
- 478:	61 e0       	ldi	r22, 0x01	; 1
- 47a:	80 e0       	ldi	r24, 0x00	; 0
- 47c:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 480:	40 e0       	ldi	r20, 0x00	; 0
- 482:	62 e0       	ldi	r22, 0x02	; 2
- 484:	80 e0       	ldi	r24, 0x00	; 0
- 486:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//write data
-	DIO_enuSetPinValue(D7_PORT, D7_PIN, ((Copy_u8Data)>>7)&1);
- 48a:	4c 2f       	mov	r20, r28
- 48c:	44 1f       	adc	r20, r20
- 48e:	44 27       	eor	r20, r20
- 490:	44 1f       	adc	r20, r20
- 492:	67 e0       	ldi	r22, 0x07	; 7
- 494:	81 e0       	ldi	r24, 0x01	; 1
- 496:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D6_PORT, D6_PIN, ((Copy_u8Data)>>6)&1);
- 49a:	c6 fb       	bst	r28, 6
- 49c:	44 27       	eor	r20, r20
- 49e:	40 f9       	bld	r20, 0
- 4a0:	66 e0       	ldi	r22, 0x06	; 6
- 4a2:	81 e0       	ldi	r24, 0x01	; 1
- 4a4:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Data)>>5)&1);
- 4a8:	c5 fb       	bst	r28, 5
- 4aa:	44 27       	eor	r20, r20
- 4ac:	40 f9       	bld	r20, 0
- 4ae:	65 e0       	ldi	r22, 0x05	; 5
- 4b0:	81 e0       	ldi	r24, 0x01	; 1
- 4b2:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D4_PORT, D4_PIN, ((Copy_u8Data)>>4)&1);
- 4b6:	c4 fb       	bst	r28, 4
- 4b8:	44 27       	eor	r20, r20
- 4ba:	40 f9       	bld	r20, 0
- 4bc:	64 e0       	ldi	r22, 0x04	; 4
- 4be:	81 e0       	ldi	r24, 0x01	; 1
- 4c0:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-#if LCD_MODE == EIGHT_BIT
-	DIO_enuSetPinValue(D3_PORT, D3_PIN, ((Copy_u8Data)>>3)&1);
- 4c4:	c3 fb       	bst	r28, 3
- 4c6:	44 27       	eor	r20, r20
- 4c8:	40 f9       	bld	r20, 0
- 4ca:	63 e0       	ldi	r22, 0x03	; 3
- 4cc:	81 e0       	ldi	r24, 0x01	; 1
- 4ce:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D2_PORT, D2_PIN, ((Copy_u8Data)>>2)&1);
- 4d2:	c2 fb       	bst	r28, 2
- 4d4:	44 27       	eor	r20, r20
- 4d6:	40 f9       	bld	r20, 0
- 4d8:	62 e0       	ldi	r22, 0x02	; 2
- 4da:	81 e0       	ldi	r24, 0x01	; 1
- 4dc:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D1_PORT, D1_PIN, ((Copy_u8Data)>>1)&1);
- 4e0:	c1 fb       	bst	r28, 1
- 4e2:	44 27       	eor	r20, r20
- 4e4:	40 f9       	bld	r20, 0
- 4e6:	61 e0       	ldi	r22, 0x01	; 1
- 4e8:	81 e0       	ldi	r24, 0x01	; 1
- 4ea:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D0_PORT, D0_PIN, ((Copy_u8Data)>>0)&1);
- 4ee:	4c 2f       	mov	r20, r28
- 4f0:	41 70       	andi	r20, 0x01	; 1
- 4f2:	60 e0       	ldi	r22, 0x00	; 0
- 4f4:	81 e0       	ldi	r24, 0x01	; 1
- 4f6:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-#elif LCD_MODE == FOUR_BIT
-	
-#endif
-	//EN latch
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
- 4fa:	41 e0       	ldi	r20, 0x01	; 1
- 4fc:	62 e0       	ldi	r22, 0x02	; 2
- 4fe:	80 e0       	ldi	r24, 0x00	; 0
- 500:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 504:	83 ec       	ldi	r24, 0xC3	; 195
- 506:	99 e0       	ldi	r25, 0x09	; 9
- 508:	01 97       	sbiw	r24, 0x01	; 1
- 50a:	f1 f7       	brne	.-4      	; 0x508 <LCD_enuSendChar+0xaa>
- 50c:	00 c0       	rjmp	.+0      	; 0x50e <LCD_enuSendChar+0xb0>
- 50e:	00 00       	nop
-	_delay_ms(10);
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 510:	40 e0       	ldi	r20, 0x00	; 0
- 512:	62 e0       	ldi	r22, 0x02	; 2
- 514:	80 e0       	ldi	r24, 0x00	; 0
- 516:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//set rs
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8HIGH);
-	
-	LCD_vidLatch(Copy_u8Data);
-	
-	cursor++;
- 51a:	80 91 80 00 	lds	r24, 0x0080	; 0x800080 <__data_end>
- 51e:	8f 5f       	subi	r24, 0xFF	; 255
- 520:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__data_end>
-	if(cursor==16)
- 524:	80 31       	cpi	r24, 0x10	; 16
- 526:	09 f0       	breq	.+2      	; 0x52a <LCD_enuSendChar+0xcc>
- 528:	47 c0       	rjmp	.+142    	; 0x5b8 <LCD_enuSendChar+0x15a>
-
-static inline void LCD_invidSendCommand(u8 Copy_u8Command)
-{
-	
-	//set rs
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8LOW);
- 52a:	40 e0       	ldi	r20, 0x00	; 0
- 52c:	60 e0       	ldi	r22, 0x00	; 0
- 52e:	80 e0       	ldi	r24, 0x00	; 0
- 530:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//set rw, EN low
-	DIO_enuSetPinValue(RW_PORT, RW_PIN, DIO_u8LOW);
- 534:	40 e0       	ldi	r20, 0x00	; 0
- 536:	61 e0       	ldi	r22, 0x01	; 1
- 538:	80 e0       	ldi	r24, 0x00	; 0
- 53a:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 53e:	40 e0       	ldi	r20, 0x00	; 0
- 540:	62 e0       	ldi	r22, 0x02	; 2
- 542:	80 e0       	ldi	r24, 0x00	; 0
- 544:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//write data
-	DIO_enuSetPinValue(D7_PORT, D7_PIN, ((Copy_u8Command)>>7)&1);
- 548:	41 e0       	ldi	r20, 0x01	; 1
- 54a:	67 e0       	ldi	r22, 0x07	; 7
- 54c:	81 e0       	ldi	r24, 0x01	; 1
- 54e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D6_PORT, D6_PIN, ((Copy_u8Command)>>6)&1);
- 552:	41 e0       	ldi	r20, 0x01	; 1
- 554:	66 e0       	ldi	r22, 0x06	; 6
- 556:	81 e0       	ldi	r24, 0x01	; 1
- 558:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Command)>>5)&1);
- 55c:	40 e0       	ldi	r20, 0x00	; 0
- 55e:	65 e0       	ldi	r22, 0x05	; 5
- 560:	81 e0       	ldi	r24, 0x01	; 1
- 562:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D4_PORT, D4_PIN, ((Copy_u8Command)>>4)&1);
- 566:	40 e0       	ldi	r20, 0x00	; 0
- 568:	64 e0       	ldi	r22, 0x04	; 4
- 56a:	81 e0       	ldi	r24, 0x01	; 1
- 56c:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D3_PORT, D3_PIN, ((Copy_u8Command)>>3)&1);
- 570:	41 e0       	ldi	r20, 0x01	; 1
- 572:	63 e0       	ldi	r22, 0x03	; 3
- 574:	81 e0       	ldi	r24, 0x01	; 1
- 576:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D2_PORT, D2_PIN, ((Copy_u8Command)>>2)&1);
- 57a:	41 e0       	ldi	r20, 0x01	; 1
- 57c:	62 e0       	ldi	r22, 0x02	; 2
- 57e:	81 e0       	ldi	r24, 0x01	; 1
- 580:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D1_PORT, D1_PIN, ((Copy_u8Command)>>1)&1);
- 584:	41 e0       	ldi	r20, 0x01	; 1
- 586:	61 e0       	ldi	r22, 0x01	; 1
- 588:	81 e0       	ldi	r24, 0x01	; 1
- 58a:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(D0_PORT, D0_PIN, ((Copy_u8Command)>>0)&1);
- 58e:	41 e0       	ldi	r20, 0x01	; 1
- 590:	60 e0       	ldi	r22, 0x00	; 0
- 592:	81 e0       	ldi	r24, 0x01	; 1
- 594:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-	//EN latch
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
- 598:	41 e0       	ldi	r20, 0x01	; 1
- 59a:	62 e0       	ldi	r22, 0x02	; 2
- 59c:	80 e0       	ldi	r24, 0x00	; 0
- 59e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
- 5a2:	83 ec       	ldi	r24, 0xC3	; 195
- 5a4:	99 e0       	ldi	r25, 0x09	; 9
- 5a6:	01 97       	sbiw	r24, 0x01	; 1
- 5a8:	f1 f7       	brne	.-4      	; 0x5a6 <LCD_enuSendChar+0x148>
- 5aa:	00 c0       	rjmp	.+0      	; 0x5ac <LCD_enuSendChar+0x14e>
- 5ac:	00 00       	nop
-	_delay_ms(10);
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
- 5ae:	40 e0       	ldi	r20, 0x00	; 0
- 5b0:	62 e0       	ldi	r22, 0x02	; 2
- 5b2:	80 e0       	ldi	r24, 0x00	; 0
- 5b4:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <DIO_enuSetPinValue>
-		else
-		LCD_invidSendCommand(0xcf);
-	}
-	
-	return Local_enuErrorState;
-}
- 5b8:	80 e0       	ldi	r24, 0x00	; 0
- 5ba:	cf 91       	pop	r28
- 5bc:	08 95       	ret
-
-000005be <main>:
-#include <util/delay.h>
-
-
+0000009e <main>:
+//void INT1_ISR(void);
+void ADC_ISR(void);
+u8 APP_u8ADCReading;
 int main(void)
 {
 	PORT_enuInit();
- 5be:	0e 94 b0 03 	call	0x760	; 0x760 <PORT_enuInit>
-	LCD_enuInit();
- 5c2:	0e 94 b2 00 	call	0x164	; 0x164 <LCD_enuInit>
-	
+  9e:	0e 94 63 01 	call	0x2c6	; 0x2c6 <PORT_enuInit>
+	ADC_enuInit();
+  a2:	0e 94 5d 00 	call	0xba	; 0xba <ADC_enuInit>
+	GIE_voidEnable();
+  a6:	0e 94 5f 01 	call	0x2be	; 0x2be <GIE_voidEnable>
+	//LCD_enuInit();
     while (1) 
     {
-		do 
-		{
-			val=KEYPAD_enuGetPressedKey();
- 5c6:	0e 94 49 00 	call	0x92	; 0x92 <KEYPAD_enuGetPressedKey>
-		} while (val==0xff);
- 5ca:	8f 3f       	cpi	r24, 0xFF	; 255
- 5cc:	e1 f3       	breq	.-8      	; 0x5c6 <main+0x8>
-		
-		LCD_enuSendChar(val);
- 5ce:	0e 94 2f 02 	call	0x45e	; 0x45e <LCD_enuSendChar>
-			
-    }
- 5d2:	f9 cf       	rjmp	.-14     	; 0x5c6 <main+0x8>
+		 ADC_enuStartConversionAsynch(0, &APP_u8ADCReading, &ADC_ISR);
+  aa:	49 e4       	ldi	r20, 0x49	; 73
+  ac:	50 e0       	ldi	r21, 0x00	; 0
+  ae:	6b e6       	ldi	r22, 0x6B	; 107
+  b0:	70 e0       	ldi	r23, 0x00	; 0
+  b2:	80 e0       	ldi	r24, 0x00	; 0
+  b4:	0e 94 71 00 	call	0xe2	; 0xe2 <ADC_enuStartConversionAsynch>
+  b8:	f8 cf       	rjmp	.-16     	; 0xaa <main+0xc>
 
-000005d4 <DIO_enuSetPinValue>:
-ES_t DIO_enuSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8Value)
+000000ba <ADC_enuInit>:
 {
-
-	ES_t Local_enuErrorState = ES_OK;
+	s32 Local_s32Slope =  (Copy_s32OutputMax - Copy_s32OutputMin)/(Copy_s32InputMax - Copy_s32InputMin);
+	s32 Local_s32OutputVal = (Local_s32Slope * (Copy_s32InputVal - Copy_s32InputMin)) + Copy_s32OutputMin;
 	
-	if(Copy_u8Pin <= DIO_u8PIN7)
- 5d4:	68 30       	cpi	r22, 0x08	; 8
- 5d6:	08 f0       	brcs	.+2      	; 0x5da <DIO_enuSetPinValue+0x6>
- 5d8:	78 c0       	rjmp	.+240    	; 0x6ca <DIO_enuSetPinValue+0xf6>
+	return Local_s32OutputVal;
+}
+  ba:	87 b1       	in	r24, 0x07	; 7
+  bc:	80 64       	ori	r24, 0x40	; 64
+  be:	87 b9       	out	0x07, r24	; 7
+  c0:	87 b1       	in	r24, 0x07	; 7
+  c2:	8f 77       	andi	r24, 0x7F	; 127
+  c4:	87 b9       	out	0x07, r24	; 7
+  c6:	87 b1       	in	r24, 0x07	; 7
+  c8:	80 62       	ori	r24, 0x20	; 32
+  ca:	87 b9       	out	0x07, r24	; 7
+  cc:	86 b1       	in	r24, 0x06	; 6
+  ce:	88 7f       	andi	r24, 0xF8	; 248
+  d0:	86 b9       	out	0x06, r24	; 6
+  d2:	86 b1       	in	r24, 0x06	; 6
+  d4:	87 60       	ori	r24, 0x07	; 7
+  d6:	86 b9       	out	0x06, r24	; 6
+  d8:	86 b1       	in	r24, 0x06	; 6
+  da:	80 68       	ori	r24, 0x80	; 128
+  dc:	86 b9       	out	0x06, r24	; 6
+  de:	80 e0       	ldi	r24, 0x00	; 0
+  e0:	08 95       	ret
+
+000000e2 <ADC_enuStartConversionAsynch>:
+  e2:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+  e6:	91 11       	cpse	r25, r1
+  e8:	1f c0       	rjmp	.+62     	; 0x128 <ADC_enuStartConversionAsynch+0x46>
+  ea:	61 15       	cp	r22, r1
+  ec:	71 05       	cpc	r23, r1
+  ee:	f1 f0       	breq	.+60     	; 0x12c <ADC_enuStartConversionAsynch+0x4a>
+  f0:	41 15       	cp	r20, r1
+  f2:	51 05       	cpc	r21, r1
+  f4:	e9 f0       	breq	.+58     	; 0x130 <ADC_enuStartConversionAsynch+0x4e>
+  f6:	91 e0       	ldi	r25, 0x01	; 1
+  f8:	90 93 60 00 	sts	0x0060, r25	; 0x800060 <__DATA_REGION_ORIGIN__>
+  fc:	70 93 64 00 	sts	0x0064, r23	; 0x800064 <ADC_pu16Reading+0x1>
+ 100:	60 93 63 00 	sts	0x0063, r22	; 0x800063 <ADC_pu16Reading>
+ 104:	50 93 62 00 	sts	0x0062, r21	; 0x800062 <ADC_pvCallBackNotificationFunc+0x1>
+ 108:	40 93 61 00 	sts	0x0061, r20	; 0x800061 <ADC_pvCallBackNotificationFunc>
+ 10c:	97 b1       	in	r25, 0x07	; 7
+ 10e:	90 7e       	andi	r25, 0xE0	; 224
+ 110:	97 b9       	out	0x07, r25	; 7
+ 112:	97 b1       	in	r25, 0x07	; 7
+ 114:	89 2b       	or	r24, r25
+ 116:	87 b9       	out	0x07, r24	; 7
+ 118:	86 b1       	in	r24, 0x06	; 6
+ 11a:	80 64       	ori	r24, 0x40	; 64
+ 11c:	86 b9       	out	0x06, r24	; 6
+ 11e:	86 b1       	in	r24, 0x06	; 6
+ 120:	88 60       	ori	r24, 0x08	; 8
+ 122:	86 b9       	out	0x06, r24	; 6
+ 124:	80 e0       	ldi	r24, 0x00	; 0
+ 126:	08 95       	ret
+ 128:	84 e0       	ldi	r24, 0x04	; 4
+ 12a:	08 95       	ret
+ 12c:	82 e0       	ldi	r24, 0x02	; 2
+ 12e:	08 95       	ret
+ 130:	82 e0       	ldi	r24, 0x02	; 2
+ 132:	08 95       	ret
+
+00000134 <__vector_16>:
+
+void __vector_16 (void) __attribute__((signal));
+void __vector_16 (void)
+{
+ 134:	1f 92       	push	r1
+ 136:	0f 92       	push	r0
+ 138:	0f b6       	in	r0, 0x3f	; 63
+ 13a:	0f 92       	push	r0
+ 13c:	11 24       	eor	r1, r1
+ 13e:	2f 93       	push	r18
+ 140:	3f 93       	push	r19
+ 142:	4f 93       	push	r20
+ 144:	5f 93       	push	r21
+ 146:	6f 93       	push	r22
+ 148:	7f 93       	push	r23
+ 14a:	8f 93       	push	r24
+ 14c:	9f 93       	push	r25
+ 14e:	af 93       	push	r26
+ 150:	bf 93       	push	r27
+ 152:	ef 93       	push	r30
+ 154:	ff 93       	push	r31
+	//Get ADC reading
+	*ADC_pu16Reading = ADCH;
+ 156:	e0 91 63 00 	lds	r30, 0x0063	; 0x800063 <ADC_pu16Reading>
+ 15a:	f0 91 64 00 	lds	r31, 0x0064	; 0x800064 <ADC_pu16Reading+0x1>
+ 15e:	85 b1       	in	r24, 0x05	; 5
+ 160:	90 e0       	ldi	r25, 0x00	; 0
+ 162:	91 83       	std	Z+1, r25	; 0x01
+ 164:	80 83       	st	Z, r24
+	
+	//make ADC state IDLE
+	ADC_u8BusyState = IDLE;
+ 166:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+	
+	//invoke the callback notification function
+	ADC_pvCallBackNotificationFunc();
+ 16a:	e0 91 61 00 	lds	r30, 0x0061	; 0x800061 <ADC_pvCallBackNotificationFunc>
+ 16e:	f0 91 62 00 	lds	r31, 0x0062	; 0x800062 <ADC_pvCallBackNotificationFunc+0x1>
+ 172:	09 95       	icall
+	 
+	//disable ADC conversion complete interrupt
+	CLR_BIT(ADCSRA,ADCSRA_ADIE);
+ 174:	86 b1       	in	r24, 0x06	; 6
+ 176:	87 7f       	andi	r24, 0xF7	; 247
+ 178:	86 b9       	out	0x06, r24	; 6
+ 17a:	ff 91       	pop	r31
+ 17c:	ef 91       	pop	r30
+ 17e:	bf 91       	pop	r27
+ 180:	af 91       	pop	r26
+ 182:	9f 91       	pop	r25
+ 184:	8f 91       	pop	r24
+ 186:	7f 91       	pop	r23
+ 188:	6f 91       	pop	r22
+ 18a:	5f 91       	pop	r21
+ 18c:	4f 91       	pop	r20
+ 18e:	3f 91       	pop	r19
+ 190:	2f 91       	pop	r18
+ 192:	0f 90       	pop	r0
+ 194:	0f be       	out	0x3f, r0	; 63
+ 196:	0f 90       	pop	r0
+ 198:	1f 90       	pop	r1
+ 19a:	18 95       	reti
+
+0000019c <DIO_enuSetPortValue>:
+///////////////////////////
+ES_t DIO_enuSetPortValue(u8 Copy_u8Port, u8 Copy_u8Value)
+{
+	ES_t Local_enuErrorState = ES_OK;
+
+	switch(Copy_u8Port)
+ 19c:	81 30       	cpi	r24, 0x01	; 1
+ 19e:	49 f0       	breq	.+18     	; 0x1b2 <DIO_enuSetPortValue+0x16>
+ 1a0:	28 f0       	brcs	.+10     	; 0x1ac <DIO_enuSetPortValue+0x10>
+ 1a2:	82 30       	cpi	r24, 0x02	; 2
+ 1a4:	49 f0       	breq	.+18     	; 0x1b8 <DIO_enuSetPortValue+0x1c>
+ 1a6:	83 30       	cpi	r24, 0x03	; 3
+ 1a8:	51 f0       	breq	.+20     	; 0x1be <DIO_enuSetPortValue+0x22>
+ 1aa:	0c c0       	rjmp	.+24     	; 0x1c4 <DIO_enuSetPortValue+0x28>
 	{
-		if(Copy_u8Value == LOW)
- 5da:	41 11       	cpse	r20, r1
- 5dc:	3c c0       	rjmp	.+120    	; 0x656 <DIO_enuSetPinValue+0x82>
-		{
-			switch(Copy_u8Port)
- 5de:	81 30       	cpi	r24, 0x01	; 1
- 5e0:	99 f0       	breq	.+38     	; 0x608 <DIO_enuSetPinValue+0x34>
- 5e2:	28 f0       	brcs	.+10     	; 0x5ee <DIO_enuSetPinValue+0x1a>
- 5e4:	82 30       	cpi	r24, 0x02	; 2
- 5e6:	e9 f0       	breq	.+58     	; 0x622 <DIO_enuSetPinValue+0x4e>
- 5e8:	83 30       	cpi	r24, 0x03	; 3
- 5ea:	41 f1       	breq	.+80     	; 0x63c <DIO_enuSetPinValue+0x68>
- 5ec:	70 c0       	rjmp	.+224    	; 0x6ce <DIO_enuSetPinValue+0xfa>
-			{
-				case DIO_u8PORTA: CLR_BIT(PORTA,Copy_u8Pin); break;
- 5ee:	2b b3       	in	r18, 0x1b	; 27
- 5f0:	81 e0       	ldi	r24, 0x01	; 1
- 5f2:	90 e0       	ldi	r25, 0x00	; 0
- 5f4:	02 c0       	rjmp	.+4      	; 0x5fa <DIO_enuSetPinValue+0x26>
- 5f6:	88 0f       	add	r24, r24
- 5f8:	99 1f       	adc	r25, r25
- 5fa:	6a 95       	dec	r22
- 5fc:	e2 f7       	brpl	.-8      	; 0x5f6 <DIO_enuSetPinValue+0x22>
- 5fe:	80 95       	com	r24
- 600:	82 23       	and	r24, r18
- 602:	8b bb       	out	0x1b, r24	; 27
-////////////////////////
-
-ES_t DIO_enuSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8Value)
+		case DIO_u8PORTA: PORTA=Copy_u8Value; break;
+ 1ac:	6b bb       	out	0x1b, r22	; 27
+	return Local_enuErrorState;
+}*/
+///////////////////////////
+ES_t DIO_enuSetPortValue(u8 Copy_u8Port, u8 Copy_u8Value)
 {
-
 	ES_t Local_enuErrorState = ES_OK;
- 604:	80 e0       	ldi	r24, 0x00	; 0
+ 1ae:	80 e0       	ldi	r24, 0x00	; 0
+
+	switch(Copy_u8Port)
 	{
-		if(Copy_u8Value == LOW)
-		{
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: CLR_BIT(PORTA,Copy_u8Pin); break;
- 606:	08 95       	ret
-				case DIO_u8PORTB: CLR_BIT(PORTB,Copy_u8Pin); break;
- 608:	28 b3       	in	r18, 0x18	; 24
- 60a:	81 e0       	ldi	r24, 0x01	; 1
- 60c:	90 e0       	ldi	r25, 0x00	; 0
- 60e:	02 c0       	rjmp	.+4      	; 0x614 <DIO_enuSetPinValue+0x40>
- 610:	88 0f       	add	r24, r24
- 612:	99 1f       	adc	r25, r25
- 614:	6a 95       	dec	r22
- 616:	e2 f7       	brpl	.-8      	; 0x610 <DIO_enuSetPinValue+0x3c>
- 618:	80 95       	com	r24
- 61a:	82 23       	and	r24, r18
- 61c:	88 bb       	out	0x18, r24	; 24
-////////////////////////
-
-ES_t DIO_enuSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8Value)
+		case DIO_u8PORTA: PORTA=Copy_u8Value; break;
+ 1b0:	08 95       	ret
+		case DIO_u8PORTB: PORTB=Copy_u8Value; break;
+ 1b2:	68 bb       	out	0x18, r22	; 24
+	return Local_enuErrorState;
+}*/
+///////////////////////////
+ES_t DIO_enuSetPortValue(u8 Copy_u8Port, u8 Copy_u8Value)
 {
-
 	ES_t Local_enuErrorState = ES_OK;
- 61e:	80 e0       	ldi	r24, 0x00	; 0
-		if(Copy_u8Value == LOW)
-		{
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: CLR_BIT(PORTA,Copy_u8Pin); break;
-				case DIO_u8PORTB: CLR_BIT(PORTB,Copy_u8Pin); break;
- 620:	08 95       	ret
-				case DIO_u8PORTC: CLR_BIT(PORTC,Copy_u8Pin); break;
- 622:	25 b3       	in	r18, 0x15	; 21
- 624:	81 e0       	ldi	r24, 0x01	; 1
- 626:	90 e0       	ldi	r25, 0x00	; 0
- 628:	02 c0       	rjmp	.+4      	; 0x62e <DIO_enuSetPinValue+0x5a>
- 62a:	88 0f       	add	r24, r24
- 62c:	99 1f       	adc	r25, r25
- 62e:	6a 95       	dec	r22
- 630:	e2 f7       	brpl	.-8      	; 0x62a <DIO_enuSetPinValue+0x56>
- 632:	80 95       	com	r24
- 634:	82 23       	and	r24, r18
- 636:	85 bb       	out	0x15, r24	; 21
-////////////////////////
+ 1b4:	80 e0       	ldi	r24, 0x00	; 0
 
-ES_t DIO_enuSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8Value)
-{
-
-	ES_t Local_enuErrorState = ES_OK;
- 638:	80 e0       	ldi	r24, 0x00	; 0
-		{
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: CLR_BIT(PORTA,Copy_u8Pin); break;
-				case DIO_u8PORTB: CLR_BIT(PORTB,Copy_u8Pin); break;
-				case DIO_u8PORTC: CLR_BIT(PORTC,Copy_u8Pin); break;
- 63a:	08 95       	ret
-				case DIO_u8PORTD: CLR_BIT(PORTD,Copy_u8Pin); break;
- 63c:	22 b3       	in	r18, 0x12	; 18
- 63e:	81 e0       	ldi	r24, 0x01	; 1
- 640:	90 e0       	ldi	r25, 0x00	; 0
- 642:	02 c0       	rjmp	.+4      	; 0x648 <DIO_enuSetPinValue+0x74>
- 644:	88 0f       	add	r24, r24
- 646:	99 1f       	adc	r25, r25
- 648:	6a 95       	dec	r22
- 64a:	e2 f7       	brpl	.-8      	; 0x644 <DIO_enuSetPinValue+0x70>
- 64c:	80 95       	com	r24
- 64e:	82 23       	and	r24, r18
- 650:	82 bb       	out	0x12, r24	; 18
-////////////////////////
-
-ES_t DIO_enuSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8Value)
-{
-
-	ES_t Local_enuErrorState = ES_OK;
- 652:	80 e0       	ldi	r24, 0x00	; 0
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: CLR_BIT(PORTA,Copy_u8Pin); break;
-				case DIO_u8PORTB: CLR_BIT(PORTB,Copy_u8Pin); break;
-				case DIO_u8PORTC: CLR_BIT(PORTC,Copy_u8Pin); break;
-				case DIO_u8PORTD: CLR_BIT(PORTD,Copy_u8Pin); break;
- 654:	08 95       	ret
-				default: Local_enuErrorState = ES_OUT_OF_RANGE; break;
-			}
-		}
-		else if(Copy_u8Value == HIGH)
- 656:	41 30       	cpi	r20, 0x01	; 1
- 658:	e1 f5       	brne	.+120    	; 0x6d2 <DIO_enuSetPinValue+0xfe>
-		{
-			switch(Copy_u8Port)
- 65a:	81 30       	cpi	r24, 0x01	; 1
- 65c:	91 f0       	breq	.+36     	; 0x682 <DIO_enuSetPinValue+0xae>
- 65e:	28 f0       	brcs	.+10     	; 0x66a <DIO_enuSetPinValue+0x96>
- 660:	82 30       	cpi	r24, 0x02	; 2
- 662:	d9 f0       	breq	.+54     	; 0x69a <DIO_enuSetPinValue+0xc6>
- 664:	83 30       	cpi	r24, 0x03	; 3
- 666:	29 f1       	breq	.+74     	; 0x6b2 <DIO_enuSetPinValue+0xde>
- 668:	36 c0       	rjmp	.+108    	; 0x6d6 <DIO_enuSetPinValue+0x102>
-			{
-				case DIO_u8PORTA: SET_BIT(PORTA,Copy_u8Pin); break;
- 66a:	2b b3       	in	r18, 0x1b	; 27
- 66c:	81 e0       	ldi	r24, 0x01	; 1
- 66e:	90 e0       	ldi	r25, 0x00	; 0
- 670:	02 c0       	rjmp	.+4      	; 0x676 <DIO_enuSetPinValue+0xa2>
- 672:	88 0f       	add	r24, r24
- 674:	99 1f       	adc	r25, r25
- 676:	6a 95       	dec	r22
- 678:	e2 f7       	brpl	.-8      	; 0x672 <DIO_enuSetPinValue+0x9e>
- 67a:	82 2b       	or	r24, r18
- 67c:	8b bb       	out	0x1b, r24	; 27
-////////////////////////
-
-ES_t DIO_enuSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8Value)
-{
-
-	ES_t Local_enuErrorState = ES_OK;
- 67e:	80 e0       	ldi	r24, 0x00	; 0
-		}
-		else if(Copy_u8Value == HIGH)
-		{
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: SET_BIT(PORTA,Copy_u8Pin); break;
- 680:	08 95       	ret
-				case DIO_u8PORTB: SET_BIT(PORTB,Copy_u8Pin); break;
- 682:	28 b3       	in	r18, 0x18	; 24
- 684:	81 e0       	ldi	r24, 0x01	; 1
- 686:	90 e0       	ldi	r25, 0x00	; 0
- 688:	02 c0       	rjmp	.+4      	; 0x68e <DIO_enuSetPinValue+0xba>
- 68a:	88 0f       	add	r24, r24
- 68c:	99 1f       	adc	r25, r25
- 68e:	6a 95       	dec	r22
- 690:	e2 f7       	brpl	.-8      	; 0x68a <DIO_enuSetPinValue+0xb6>
- 692:	82 2b       	or	r24, r18
- 694:	88 bb       	out	0x18, r24	; 24
-////////////////////////
-
-ES_t DIO_enuSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8Value)
-{
-
-	ES_t Local_enuErrorState = ES_OK;
- 696:	80 e0       	ldi	r24, 0x00	; 0
-		else if(Copy_u8Value == HIGH)
-		{
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: SET_BIT(PORTA,Copy_u8Pin); break;
-				case DIO_u8PORTB: SET_BIT(PORTB,Copy_u8Pin); break;
- 698:	08 95       	ret
-				case DIO_u8PORTC: SET_BIT(PORTC,Copy_u8Pin); break;
- 69a:	25 b3       	in	r18, 0x15	; 21
- 69c:	81 e0       	ldi	r24, 0x01	; 1
- 69e:	90 e0       	ldi	r25, 0x00	; 0
- 6a0:	02 c0       	rjmp	.+4      	; 0x6a6 <DIO_enuSetPinValue+0xd2>
- 6a2:	88 0f       	add	r24, r24
- 6a4:	99 1f       	adc	r25, r25
- 6a6:	6a 95       	dec	r22
- 6a8:	e2 f7       	brpl	.-8      	; 0x6a2 <DIO_enuSetPinValue+0xce>
- 6aa:	82 2b       	or	r24, r18
- 6ac:	85 bb       	out	0x15, r24	; 21
-////////////////////////
-
-ES_t DIO_enuSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8Value)
-{
-
-	ES_t Local_enuErrorState = ES_OK;
- 6ae:	80 e0       	ldi	r24, 0x00	; 0
-		{
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: SET_BIT(PORTA,Copy_u8Pin); break;
-				case DIO_u8PORTB: SET_BIT(PORTB,Copy_u8Pin); break;
-				case DIO_u8PORTC: SET_BIT(PORTC,Copy_u8Pin); break;
- 6b0:	08 95       	ret
-				case DIO_u8PORTD: SET_BIT(PORTD,Copy_u8Pin); break;
- 6b2:	22 b3       	in	r18, 0x12	; 18
- 6b4:	81 e0       	ldi	r24, 0x01	; 1
- 6b6:	90 e0       	ldi	r25, 0x00	; 0
- 6b8:	02 c0       	rjmp	.+4      	; 0x6be <DIO_enuSetPinValue+0xea>
- 6ba:	88 0f       	add	r24, r24
- 6bc:	99 1f       	adc	r25, r25
- 6be:	6a 95       	dec	r22
- 6c0:	e2 f7       	brpl	.-8      	; 0x6ba <DIO_enuSetPinValue+0xe6>
- 6c2:	82 2b       	or	r24, r18
- 6c4:	82 bb       	out	0x12, r24	; 18
-////////////////////////
-
-ES_t DIO_enuSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8Value)
-{
-
-	ES_t Local_enuErrorState = ES_OK;
- 6c6:	80 e0       	ldi	r24, 0x00	; 0
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: SET_BIT(PORTA,Copy_u8Pin); break;
-				case DIO_u8PORTB: SET_BIT(PORTB,Copy_u8Pin); break;
-				case DIO_u8PORTC: SET_BIT(PORTC,Copy_u8Pin); break;
-				case DIO_u8PORTD: SET_BIT(PORTD,Copy_u8Pin); break;
- 6c8:	08 95       	ret
-			Local_enuErrorState = ES_NOK;
-		}
-	}
-	else
+	switch(Copy_u8Port)
 	{
-		Local_enuErrorState = ES_OUT_OF_RANGE;
- 6ca:	83 e0       	ldi	r24, 0x03	; 3
- 6cc:	08 95       	ret
-			{
-				case DIO_u8PORTA: CLR_BIT(PORTA,Copy_u8Pin); break;
-				case DIO_u8PORTB: CLR_BIT(PORTB,Copy_u8Pin); break;
-				case DIO_u8PORTC: CLR_BIT(PORTC,Copy_u8Pin); break;
-				case DIO_u8PORTD: CLR_BIT(PORTD,Copy_u8Pin); break;
-				default: Local_enuErrorState = ES_OUT_OF_RANGE; break;
- 6ce:	83 e0       	ldi	r24, 0x03	; 3
- 6d0:	08 95       	ret
-				default: Local_enuErrorState = ES_OUT_OF_RANGE; break;
-			}
-		}
-		else
-		{
-			Local_enuErrorState = ES_NOK;
- 6d2:	81 e0       	ldi	r24, 0x01	; 1
- 6d4:	08 95       	ret
-			{
-				case DIO_u8PORTA: SET_BIT(PORTA,Copy_u8Pin); break;
-				case DIO_u8PORTB: SET_BIT(PORTB,Copy_u8Pin); break;
-				case DIO_u8PORTC: SET_BIT(PORTC,Copy_u8Pin); break;
-				case DIO_u8PORTD: SET_BIT(PORTD,Copy_u8Pin); break;
-				default: Local_enuErrorState = ES_OUT_OF_RANGE; break;
- 6d6:	83 e0       	ldi	r24, 0x03	; 3
+		case DIO_u8PORTA: PORTA=Copy_u8Value; break;
+		case DIO_u8PORTB: PORTB=Copy_u8Value; break;
+ 1b6:	08 95       	ret
+		case DIO_u8PORTC: PORTC=Copy_u8Value; break;
+ 1b8:	65 bb       	out	0x15, r22	; 21
+	return Local_enuErrorState;
+}*/
+///////////////////////////
+ES_t DIO_enuSetPortValue(u8 Copy_u8Port, u8 Copy_u8Value)
+{
+	ES_t Local_enuErrorState = ES_OK;
+ 1ba:	80 e0       	ldi	r24, 0x00	; 0
+
+	switch(Copy_u8Port)
 	{
-		Local_enuErrorState = ES_OUT_OF_RANGE;
+		case DIO_u8PORTA: PORTA=Copy_u8Value; break;
+		case DIO_u8PORTB: PORTB=Copy_u8Value; break;
+		case DIO_u8PORTC: PORTC=Copy_u8Value; break;
+ 1bc:	08 95       	ret
+		case DIO_u8PORTD: PORTD=Copy_u8Value; break;
+ 1be:	62 bb       	out	0x12, r22	; 18
+	return Local_enuErrorState;
+}*/
+///////////////////////////
+ES_t DIO_enuSetPortValue(u8 Copy_u8Port, u8 Copy_u8Value)
+{
+	ES_t Local_enuErrorState = ES_OK;
+ 1c0:	80 e0       	ldi	r24, 0x00	; 0
+	switch(Copy_u8Port)
+	{
+		case DIO_u8PORTA: PORTA=Copy_u8Value; break;
+		case DIO_u8PORTB: PORTB=Copy_u8Value; break;
+		case DIO_u8PORTC: PORTC=Copy_u8Value; break;
+		case DIO_u8PORTD: PORTD=Copy_u8Value; break;
+ 1c2:	08 95       	ret
+		default: Local_enuErrorState = ES_OUT_OF_RANGE; break;
+ 1c4:	83 e0       	ldi	r24, 0x03	; 3
 	}
 	
 	return Local_enuErrorState;
 }
- 6d8:	08 95       	ret
+ 1c6:	08 95       	ret
 
-000006da <DIO_enuGetPinValue>:
-//////////////////////
-ES_t DIO_enuGetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8* Copy_pu8Value)
-{
-	ES_t Local_enuErrorState = ES_OK;
+000001c8 <__vector_1>:
+	{
+		Local_enuErrorState = ES_NULL_POINTER;
+	}
+	
+	return Local_enuErrorState;
+}
+ 1c8:	1f 92       	push	r1
+ 1ca:	0f 92       	push	r0
+ 1cc:	0f b6       	in	r0, 0x3f	; 63
+ 1ce:	0f 92       	push	r0
+ 1d0:	11 24       	eor	r1, r1
+ 1d2:	2f 93       	push	r18
+ 1d4:	3f 93       	push	r19
+ 1d6:	4f 93       	push	r20
+ 1d8:	5f 93       	push	r21
+ 1da:	6f 93       	push	r22
+ 1dc:	7f 93       	push	r23
+ 1de:	8f 93       	push	r24
+ 1e0:	9f 93       	push	r25
+ 1e2:	af 93       	push	r26
+ 1e4:	bf 93       	push	r27
+ 1e6:	ef 93       	push	r30
+ 1e8:	ff 93       	push	r31
+ 1ea:	e0 91 69 00 	lds	r30, 0x0069	; 0x800069 <EXTI_pvInt0Isr>
+ 1ee:	f0 91 6a 00 	lds	r31, 0x006A	; 0x80006a <EXTI_pvInt0Isr+0x1>
+ 1f2:	30 97       	sbiw	r30, 0x00	; 0
+ 1f4:	09 f0       	breq	.+2      	; 0x1f8 <__vector_1+0x30>
+ 1f6:	09 95       	icall
+ 1f8:	ff 91       	pop	r31
+ 1fa:	ef 91       	pop	r30
+ 1fc:	bf 91       	pop	r27
+ 1fe:	af 91       	pop	r26
+ 200:	9f 91       	pop	r25
+ 202:	8f 91       	pop	r24
+ 204:	7f 91       	pop	r23
+ 206:	6f 91       	pop	r22
+ 208:	5f 91       	pop	r21
+ 20a:	4f 91       	pop	r20
+ 20c:	3f 91       	pop	r19
+ 20e:	2f 91       	pop	r18
+ 210:	0f 90       	pop	r0
+ 212:	0f be       	out	0x3f, r0	; 63
+ 214:	0f 90       	pop	r0
+ 216:	1f 90       	pop	r1
+ 218:	18 95       	reti
 
-	if(Copy_pu8Value != NULL)
- 6da:	41 15       	cp	r20, r1
- 6dc:	51 05       	cpc	r21, r1
- 6de:	d1 f1       	breq	.+116    	; 0x754 <DIO_enuGetPinValue+0x7a>
+0000021a <__vector_2>:
+ 21a:	1f 92       	push	r1
+ 21c:	0f 92       	push	r0
+ 21e:	0f b6       	in	r0, 0x3f	; 63
+ 220:	0f 92       	push	r0
+ 222:	11 24       	eor	r1, r1
+ 224:	2f 93       	push	r18
+ 226:	3f 93       	push	r19
+ 228:	4f 93       	push	r20
+ 22a:	5f 93       	push	r21
+ 22c:	6f 93       	push	r22
+ 22e:	7f 93       	push	r23
+ 230:	8f 93       	push	r24
+ 232:	9f 93       	push	r25
+ 234:	af 93       	push	r26
+ 236:	bf 93       	push	r27
+ 238:	ef 93       	push	r30
+ 23a:	ff 93       	push	r31
+ 23c:	e0 91 67 00 	lds	r30, 0x0067	; 0x800067 <EXTI_pvInt1Isr>
+ 240:	f0 91 68 00 	lds	r31, 0x0068	; 0x800068 <EXTI_pvInt1Isr+0x1>
+ 244:	30 97       	sbiw	r30, 0x00	; 0
+ 246:	09 f0       	breq	.+2      	; 0x24a <__vector_2+0x30>
+ 248:	09 95       	icall
+ 24a:	ff 91       	pop	r31
+ 24c:	ef 91       	pop	r30
+ 24e:	bf 91       	pop	r27
+ 250:	af 91       	pop	r26
+ 252:	9f 91       	pop	r25
+ 254:	8f 91       	pop	r24
+ 256:	7f 91       	pop	r23
+ 258:	6f 91       	pop	r22
+ 25a:	5f 91       	pop	r21
+ 25c:	4f 91       	pop	r20
+ 25e:	3f 91       	pop	r19
+ 260:	2f 91       	pop	r18
+ 262:	0f 90       	pop	r0
+ 264:	0f be       	out	0x3f, r0	; 63
+ 266:	0f 90       	pop	r0
+ 268:	1f 90       	pop	r1
+ 26a:	18 95       	reti
+
+0000026c <__vector_3>:
+
+void __vector_3 (void) __attribute__((signal));
+void __vector_3 (void)
+{
+ 26c:	1f 92       	push	r1
+ 26e:	0f 92       	push	r0
+ 270:	0f b6       	in	r0, 0x3f	; 63
+ 272:	0f 92       	push	r0
+ 274:	11 24       	eor	r1, r1
+ 276:	2f 93       	push	r18
+ 278:	3f 93       	push	r19
+ 27a:	4f 93       	push	r20
+ 27c:	5f 93       	push	r21
+ 27e:	6f 93       	push	r22
+ 280:	7f 93       	push	r23
+ 282:	8f 93       	push	r24
+ 284:	9f 93       	push	r25
+ 286:	af 93       	push	r26
+ 288:	bf 93       	push	r27
+ 28a:	ef 93       	push	r30
+ 28c:	ff 93       	push	r31
+	if(EXTI_pvInt2Isr != NULL)
+ 28e:	e0 91 65 00 	lds	r30, 0x0065	; 0x800065 <EXTI_pvInt2Isr>
+ 292:	f0 91 66 00 	lds	r31, 0x0066	; 0x800066 <EXTI_pvInt2Isr+0x1>
+ 296:	30 97       	sbiw	r30, 0x00	; 0
+ 298:	09 f0       	breq	.+2      	; 0x29c <__vector_3+0x30>
 	{
-		if(Copy_u8Pin <= DIO_u8PIN7)
- 6e0:	68 30       	cpi	r22, 0x08	; 8
- 6e2:	d0 f5       	brcc	.+116    	; 0x758 <DIO_enuGetPinValue+0x7e>
-		{
-			switch(Copy_u8Port)
- 6e4:	81 30       	cpi	r24, 0x01	; 1
- 6e6:	91 f0       	breq	.+36     	; 0x70c <DIO_enuGetPinValue+0x32>
- 6e8:	28 f0       	brcs	.+10     	; 0x6f4 <DIO_enuGetPinValue+0x1a>
- 6ea:	82 30       	cpi	r24, 0x02	; 2
- 6ec:	d9 f0       	breq	.+54     	; 0x724 <DIO_enuGetPinValue+0x4a>
- 6ee:	83 30       	cpi	r24, 0x03	; 3
- 6f0:	29 f1       	breq	.+74     	; 0x73c <DIO_enuGetPinValue+0x62>
- 6f2:	34 c0       	rjmp	.+104    	; 0x75c <DIO_enuGetPinValue+0x82>
-			{
-				case DIO_u8PORTA: *Copy_pu8Value=GET_BIT(PINA , Copy_u8Pin); break;
- 6f4:	89 b3       	in	r24, 0x19	; 25
- 6f6:	90 e0       	ldi	r25, 0x00	; 0
- 6f8:	02 c0       	rjmp	.+4      	; 0x6fe <DIO_enuGetPinValue+0x24>
- 6fa:	95 95       	asr	r25
- 6fc:	87 95       	ror	r24
- 6fe:	6a 95       	dec	r22
- 700:	e2 f7       	brpl	.-8      	; 0x6fa <DIO_enuGetPinValue+0x20>
- 702:	81 70       	andi	r24, 0x01	; 1
- 704:	fa 01       	movw	r30, r20
- 706:	80 83       	st	Z, r24
-	return Local_enuErrorState;
-}
-//////////////////////
-ES_t DIO_enuGetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8* Copy_pu8Value)
-{
-	ES_t Local_enuErrorState = ES_OK;
- 708:	80 e0       	ldi	r24, 0x00	; 0
-	{
-		if(Copy_u8Pin <= DIO_u8PIN7)
-		{
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: *Copy_pu8Value=GET_BIT(PINA , Copy_u8Pin); break;
- 70a:	08 95       	ret
-				case DIO_u8PORTB: *Copy_pu8Value=GET_BIT(PINB , Copy_u8Pin); break;
- 70c:	86 b3       	in	r24, 0x16	; 22
- 70e:	90 e0       	ldi	r25, 0x00	; 0
- 710:	02 c0       	rjmp	.+4      	; 0x716 <DIO_enuGetPinValue+0x3c>
- 712:	95 95       	asr	r25
- 714:	87 95       	ror	r24
- 716:	6a 95       	dec	r22
- 718:	e2 f7       	brpl	.-8      	; 0x712 <DIO_enuGetPinValue+0x38>
- 71a:	81 70       	andi	r24, 0x01	; 1
- 71c:	fa 01       	movw	r30, r20
- 71e:	80 83       	st	Z, r24
-	return Local_enuErrorState;
-}
-//////////////////////
-ES_t DIO_enuGetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8* Copy_pu8Value)
-{
-	ES_t Local_enuErrorState = ES_OK;
- 720:	80 e0       	ldi	r24, 0x00	; 0
-		if(Copy_u8Pin <= DIO_u8PIN7)
-		{
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: *Copy_pu8Value=GET_BIT(PINA , Copy_u8Pin); break;
-				case DIO_u8PORTB: *Copy_pu8Value=GET_BIT(PINB , Copy_u8Pin); break;
- 722:	08 95       	ret
-				case DIO_u8PORTC: *Copy_pu8Value=GET_BIT(PINC , Copy_u8Pin); break;
- 724:	83 b3       	in	r24, 0x13	; 19
- 726:	90 e0       	ldi	r25, 0x00	; 0
- 728:	02 c0       	rjmp	.+4      	; 0x72e <DIO_enuGetPinValue+0x54>
- 72a:	95 95       	asr	r25
- 72c:	87 95       	ror	r24
- 72e:	6a 95       	dec	r22
- 730:	e2 f7       	brpl	.-8      	; 0x72a <DIO_enuGetPinValue+0x50>
- 732:	81 70       	andi	r24, 0x01	; 1
- 734:	fa 01       	movw	r30, r20
- 736:	80 83       	st	Z, r24
-	return Local_enuErrorState;
-}
-//////////////////////
-ES_t DIO_enuGetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8* Copy_pu8Value)
-{
-	ES_t Local_enuErrorState = ES_OK;
- 738:	80 e0       	ldi	r24, 0x00	; 0
-		{
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: *Copy_pu8Value=GET_BIT(PINA , Copy_u8Pin); break;
-				case DIO_u8PORTB: *Copy_pu8Value=GET_BIT(PINB , Copy_u8Pin); break;
-				case DIO_u8PORTC: *Copy_pu8Value=GET_BIT(PINC , Copy_u8Pin); break;
- 73a:	08 95       	ret
-				case DIO_u8PORTD: *Copy_pu8Value=GET_BIT(PIND , Copy_u8Pin); break;
- 73c:	80 b3       	in	r24, 0x10	; 16
- 73e:	90 e0       	ldi	r25, 0x00	; 0
- 740:	02 c0       	rjmp	.+4      	; 0x746 <DIO_enuGetPinValue+0x6c>
- 742:	95 95       	asr	r25
- 744:	87 95       	ror	r24
- 746:	6a 95       	dec	r22
- 748:	e2 f7       	brpl	.-8      	; 0x742 <DIO_enuGetPinValue+0x68>
- 74a:	81 70       	andi	r24, 0x01	; 1
- 74c:	fa 01       	movw	r30, r20
- 74e:	80 83       	st	Z, r24
-	return Local_enuErrorState;
-}
-//////////////////////
-ES_t DIO_enuGetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8* Copy_pu8Value)
-{
-	ES_t Local_enuErrorState = ES_OK;
- 750:	80 e0       	ldi	r24, 0x00	; 0
-			switch(Copy_u8Port)
-			{
-				case DIO_u8PORTA: *Copy_pu8Value=GET_BIT(PINA , Copy_u8Pin); break;
-				case DIO_u8PORTB: *Copy_pu8Value=GET_BIT(PINB , Copy_u8Pin); break;
-				case DIO_u8PORTC: *Copy_pu8Value=GET_BIT(PINC , Copy_u8Pin); break;
-				case DIO_u8PORTD: *Copy_pu8Value=GET_BIT(PIND , Copy_u8Pin); break;
- 752:	08 95       	ret
-			}
-		}
+		EXTI_pvInt2Isr();
+ 29a:	09 95       	icall
 	}
 	else
 	{
-		Local_enuErrorState = ES_NULL_POINTER;
- 754:	82 e0       	ldi	r24, 0x02	; 2
- 756:	08 95       	ret
-	return Local_enuErrorState;
-}
-//////////////////////
-ES_t DIO_enuGetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8* Copy_pu8Value)
-{
-	ES_t Local_enuErrorState = ES_OK;
- 758:	80 e0       	ldi	r24, 0x00	; 0
- 75a:	08 95       	ret
-			{
-				case DIO_u8PORTA: *Copy_pu8Value=GET_BIT(PINA , Copy_u8Pin); break;
-				case DIO_u8PORTB: *Copy_pu8Value=GET_BIT(PINB , Copy_u8Pin); break;
-				case DIO_u8PORTC: *Copy_pu8Value=GET_BIT(PINC , Copy_u8Pin); break;
-				case DIO_u8PORTD: *Copy_pu8Value=GET_BIT(PIND , Copy_u8Pin); break;
-				default: Local_enuErrorState = ES_OUT_OF_RANGE; break;
- 75c:	83 e0       	ldi	r24, 0x03	; 3
-	{
-		Local_enuErrorState = ES_NULL_POINTER;
+		//Do nothing
 	}
+ 29c:	ff 91       	pop	r31
+ 29e:	ef 91       	pop	r30
+ 2a0:	bf 91       	pop	r27
+ 2a2:	af 91       	pop	r26
+ 2a4:	9f 91       	pop	r25
+ 2a6:	8f 91       	pop	r24
+ 2a8:	7f 91       	pop	r23
+ 2aa:	6f 91       	pop	r22
+ 2ac:	5f 91       	pop	r21
+ 2ae:	4f 91       	pop	r20
+ 2b0:	3f 91       	pop	r19
+ 2b2:	2f 91       	pop	r18
+ 2b4:	0f 90       	pop	r0
+ 2b6:	0f be       	out	0x3f, r0	; 63
+ 2b8:	0f 90       	pop	r0
+ 2ba:	1f 90       	pop	r1
+ 2bc:	18 95       	reti
 
-	return Local_enuErrorState;
-}
- 75e:	08 95       	ret
+000002be <GIE_voidEnable>:
+#include "GIE_interface.h"
+#include "GIE_private.h"
 
-00000760 <PORT_enuInit>:
+void GIE_voidEnable(void)
+{
+	SET_BIT(SREG,SREG_I);
+ 2be:	8f b7       	in	r24, 0x3f	; 63
+ 2c0:	80 68       	ori	r24, 0x80	; 128
+ 2c2:	8f bf       	out	0x3f, r24	; 63
+ 2c4:	08 95       	ret
+
+000002c6 <PORT_enuInit>:
 
 ES_t PORT_enuInit(void)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 	
 	DDRA = PORTA_DIR;
- 760:	9f ef       	ldi	r25, 0xFF	; 255
- 762:	9a bb       	out	0x1a, r25	; 26
+ 2c6:	1a ba       	out	0x1a, r1	; 26
 	DDRB = PORTB_DIR;
- 764:	97 bb       	out	0x17, r25	; 23
+ 2c8:	8f ef       	ldi	r24, 0xFF	; 255
+ 2ca:	87 bb       	out	0x17, r24	; 23
 	DDRC = PORTC_DIR;
- 766:	80 ef       	ldi	r24, 0xF0	; 240
- 768:	84 bb       	out	0x14, r24	; 20
+ 2cc:	84 bb       	out	0x14, r24	; 20
 	DDRD = PORTD_DIR;
- 76a:	81 e0       	ldi	r24, 0x01	; 1
- 76c:	81 bb       	out	0x11, r24	; 17
+ 2ce:	81 bb       	out	0x11, r24	; 17
 	
 	PORTA = PORTA_VAL;
- 76e:	8b bb       	out	0x1b, r24	; 27
+ 2d0:	1b ba       	out	0x1b, r1	; 27
 	PORTB = PORTB_VAL;
- 770:	18 ba       	out	0x18, r1	; 24
+ 2d2:	84 e0       	ldi	r24, 0x04	; 4
+ 2d4:	88 bb       	out	0x18, r24	; 24
 	PORTC = PORTC_VAL;
- 772:	95 bb       	out	0x15, r25	; 21
+ 2d6:	15 ba       	out	0x15, r1	; 21
 	PORTD = PORTD_VAL;
- 774:	82 bb       	out	0x12, r24	; 18
+ 2d8:	8d e0       	ldi	r24, 0x0D	; 13
+ 2da:	82 bb       	out	0x12, r24	; 18
 	
 	Local_enuErrorState = ES_OK;
 	
 	return Local_enuErrorState;
- 776:	80 e0       	ldi	r24, 0x00	; 0
- 778:	08 95       	ret
+ 2dc:	80 e0       	ldi	r24, 0x00	; 0
+ 2de:	08 95       	ret
 
-0000077a <_exit>:
- 77a:	f8 94       	cli
+000002e0 <_exit>:
+ 2e0:	f8 94       	cli
 
-0000077c <__stop_program>:
- 77c:	ff cf       	rjmp	.-2      	; 0x77c <__stop_program>
+000002e2 <__stop_program>:
+ 2e2:	ff cf       	rjmp	.-2      	; 0x2e2 <__stop_program>

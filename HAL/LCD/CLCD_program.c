@@ -41,10 +41,13 @@ ES_t LCD_enuInit(void)
 	_delay_ms(2);
 	//entry mode 000001 ID SH
 	#if DIRECTION == LEFT_TO_RIGHT
-	LCD_invidSendCommand(0X06);  //00000110
+	LCD_invidSendCommand(0x80);
+	LCD_invidSendCommand(0x06);  //00000110
 	#elif DIRECTION == RIGHT_TO_LEFT
-	LCD_invidSendCommand(0x04);  //00000101
 	LCD_invidSendCommand(0x8f);
+	LCD_invidSendCommand(0x04);  //00000100
+	#else
+	Local_enuErrorState = ES_NOK;
 	#endif
 	
 	return Local_enuErrorState;
@@ -59,12 +62,12 @@ ES_t LCD_enuSendChar(u8 Copy_u8Data)
 	LCD_vidLatch(Copy_u8Data);
 	
 	cursor++;
-	if(cursor==16)
+	if(cursor == 16)
 	{
 		if(DIRECTION == LEFT_TO_RIGHT)
-		LCD_invidSendCommand(0xc0);
+		LCD_enuSendCommand(0xc0);
 		else
-		LCD_invidSendCommand(0xcf);
+		LCD_enuSendCommand(0xcf);
 	}
 	
 	return Local_enuErrorState;
@@ -87,11 +90,11 @@ ES_t LCD_enuGoTo(u8 Copy_u8Row, u8 Copy_u8Col)
 
 	if (Copy_u8Row == 0)
 	{
-		LCD_invidSendCommand(0x80 + Copy_u8Col);
+		LCD_enuSendCommand(0x80 + Copy_u8Col);
 	}
 	else if(Copy_u8Row == 1)
 	{
-		LCD_invidSendCommand(0xc0 +Copy_u8Col);
+		LCD_enuSendCommand(0xc0 +Copy_u8Col);
 	}
 	else
 	{
@@ -101,21 +104,30 @@ ES_t LCD_enuGoTo(u8 Copy_u8Row, u8 Copy_u8Col)
 	return Local_enuErrorState;
 }
 
-ES_t LCD_enuDisplayEXtraChar(u8 Copy_u8CharArray[], u8 Copy_u8CharNum, u8 Copy_u8Row, u8 Copy_u8Col, u8 Copy_u8Direction)
+ES_t LCD_enuDisplayEXtraChar(u8 Copy_u8CharArray[], u8 Copy_u8CharNum, u8 Copy_u8Row, u8 Copy_u8Col)
 {
 	ES_t Local_enuErrorState = ES_OK;
-	
+	u8 Local_u8Iterator;
 	//go to CGRAM
-	LCD_invidSendCommand(PAT0);
+	LCD_enuSendCommand(0x40);
 	//send to CGRAM
-	for(u8 i=0;i<(8*Copy_u8CharNum);i++)
-	LCD_vidLatch(Copy_u8CharArray[i]);
+	for(Local_u8Iterator=0;Local_u8Iterator<(8*Copy_u8CharNum);Local_u8Iterator++)
+	LCD_enuSendChar(Copy_u8CharArray[Local_u8Iterator]);
 	//go to DDRAM
 	LCD_enuGoTo( Copy_u8Row, Copy_u8Col);
-	LCD_invidSendCommand(Copy_u8Direction);
+	#if DIRECTION == LEFT_TO_RIGHT
+	LCD_enuSendCommand(0x06);  //00000110
+	#elif DIRECTION == RIGHT_TO_LEFT
+	LCD_enuSendCommand(0x04);  //00000100
+	#else
+	Local_enuErrorState = ES_NOK;
+	#endif
 	//
-	for(u8 i=0;i<Copy_u8CharNum;i++)
-	LCD_vidLatch(i);
+	for(Local_u8Iterator=0;Local_u8Iterator<Copy_u8CharNum;Local_u8Iterator++)
+	{
+		LCD_enuSendChar(Local_u8Iterator);
+	}
+	
 	
 	return Local_enuErrorState;
 }
@@ -126,7 +138,7 @@ ES_t LCD_enuSendString(u8* Copy_pu8String)
 	
 	while (*Copy_pu8String) 
 	{
-		LCD_vidLatch(*Copy_pu8String);
+		LCD_enuSendChar(*Copy_pu8String);
 		Copy_pu8String++;
 	}
 	
@@ -139,7 +151,7 @@ ES_t LCD_enuWriteNumber(f32 Copy_u8Num)
 
 	if(Copy_u8Num == 0.0)
 	{
-		LCD_vidLatch('0');
+		LCD_enuSendChar('0');
 		return Local_enuErrorState;
 	}
 
@@ -148,12 +160,14 @@ ES_t LCD_enuWriteNumber(f32 Copy_u8Num)
 	s32 Local_s32Number = Copy_u8Num;
 	if(Copy_u8Num < 0 )
 	{
-		LCD_vidLatch('-');
+		LCD_enuSendChar('-');
 		Local_s32Number *= -1;
 	}
 
-	if((Copy_u8Num < 1.0 && Copy_u8Num > 0.0) || (Copy_u8Num > -1.0 && Copy_u8Num < 0.0)) LCD_enuSendChar('0');
-
+	if((Copy_u8Num < 1.0 && Copy_u8Num > 0.0) || (Copy_u8Num > -1.0 && Copy_u8Num < 0.0))
+	{
+	 LCD_enuSendChar('0');
+	}
 	while (Local_s32Number > 0)
 	{
 		Local_u8Iterator++;
@@ -163,15 +177,18 @@ ES_t LCD_enuWriteNumber(f32 Copy_u8Num)
 
 	while( Local_u8Iterator >= 0)
 	{
-		LCD_vidLatch( Local_Au8Digits[Local_u8Iterator] + '0');
+		LCD_enuSendChar( Local_Au8Digits[Local_u8Iterator] + '0');
 		Local_u8Iterator--;
 	}
 
 	Copy_u8Num = (Copy_u8Num - (s32)Copy_u8Num);
 	if(Copy_u8Num != 0.0)
 	{
-		LCD_vidLatch('.');
-		if(Copy_u8Num < 0) Copy_u8Num *= -1;
+		LCD_enuSendChar('.');
+		if(Copy_u8Num < 0) 
+		{
+		Copy_u8Num *= -1;		
+		}
 		u16 base = 10;
 		while (base <= 10000)
 		{
@@ -182,12 +199,13 @@ ES_t LCD_enuWriteNumber(f32 Copy_u8Num)
 
 		while( Local_u8Iterator >= 0 )
 		{
-			LCD_vidLatch( Local_Au8Digits[Local_u8Iterator] + '0');
+			LCD_enuSendChar( Local_Au8Digits[Local_u8Iterator] + '0');
 			Local_u8Iterator--;
 		}
 
 	}
-
+	
+	
 	return Local_enuErrorState;
 }
 
@@ -201,9 +219,25 @@ ES_t LCD_enuClear(void)
 	return Local_enuErrorState;
 }
 
+/*ES_t LCD_SetDirection(u8 Copy_u8Dir, u8 Copy_u8Row, u8 Copy_u8Col)
+{
+	ES_t Local_enuErrorState = ES_OK;
+	
+	#if Copy_u8Dir == L_TO_R
+	LCD_enuGoTo(Copy_u8Row, Copy_u8Col);
+	LCD_enuSendCommand(0x06);  //00000110
+	#elif Copy_u8Dir == L_TO_R
+	LCD_enuGoTo(Copy_u8Row, Copy_u8Col);
+	LCD_enuSendCommand(0x04);  //00000101
+	#else
+	Local_enuErrorState = ES_NOK;
+	#endif
+	
+	return Local_enuErrorState;
+}*/
+
 static inline void LCD_vidLatch(u8 Copy_u8Data)
 {
-	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8HIGH );
 	//set rw, EN low
 	DIO_enuSetPinValue(RW_PORT, RW_PIN, DIO_u8LOW);
 	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
@@ -239,10 +273,14 @@ static inline void LCD_invidSendCommand(u8 Copy_u8Command)
 	DIO_enuSetPinValue(D6_PORT, D6_PIN, ((Copy_u8Command)>>6)&1);
 	DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Command)>>5)&1);
 	DIO_enuSetPinValue(D4_PORT, D4_PIN, ((Copy_u8Command)>>4)&1);
+#if LCD_MODE == EIGHT_BIT
 	DIO_enuSetPinValue(D3_PORT, D3_PIN, ((Copy_u8Command)>>3)&1);
 	DIO_enuSetPinValue(D2_PORT, D2_PIN, ((Copy_u8Command)>>2)&1);
 	DIO_enuSetPinValue(D1_PORT, D1_PIN, ((Copy_u8Command)>>1)&1);
 	DIO_enuSetPinValue(D0_PORT, D0_PIN, ((Copy_u8Command)>>0)&1);
+#elif LCD_MODE == FOUR_BIT
+	
+#endif
 	//EN latch
 	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
 	_delay_ms(10);

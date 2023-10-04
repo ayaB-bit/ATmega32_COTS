@@ -36,9 +36,12 @@ SUBDIRS :=  \
 ../HAL \
 ../HAL/LCD \
 ../HAL/KEYPAD \
+../LIB/ \
 ../MCAL \
 ../MCAL/DIO \
-../LIB \
+../MCAL/EXTI \
+../MCAL/GIE \
+../MCAL/ADC \
 ../MCAL/PORT
 
 
@@ -47,7 +50,10 @@ C_SRCS +=  \
 ../HAL/KEYPAD/KEYPAD_program.c \
 ../HAL/LCD/CLCD_program.c \
 ../main.c \
+../MCAL/ADC/ADC_program.c \
 ../MCAL/DIO/DIO_program.c \
+../MCAL/EXTI/EXTI_program.c \
+../MCAL/GIE/GIE_program.c \
 ../MCAL/PORT/PORT_program.c
 
 
@@ -61,28 +67,40 @@ OBJS +=  \
 HAL/KEYPAD/KEYPAD_program.o \
 HAL/LCD/CLCD_program.o \
 main.o \
+MCAL/ADC/ADC_program.o \
 MCAL/DIO/DIO_program.o \
+MCAL/EXTI/EXTI_program.o \
+MCAL/GIE/GIE_program.o \
 MCAL/PORT/PORT_program.o
 
 OBJS_AS_ARGS +=  \
 HAL/KEYPAD/KEYPAD_program.o \
 HAL/LCD/CLCD_program.o \
 main.o \
+MCAL/ADC/ADC_program.o \
 MCAL/DIO/DIO_program.o \
+MCAL/EXTI/EXTI_program.o \
+MCAL/GIE/GIE_program.o \
 MCAL/PORT/PORT_program.o
 
 C_DEPS +=  \
 HAL/KEYPAD/KEYPAD_program.d \
 HAL/LCD/CLCD_program.d \
 main.d \
+MCAL/ADC/ADC_program.d \
 MCAL/DIO/DIO_program.d \
+MCAL/EXTI/EXTI_program.d \
+MCAL/GIE/GIE_program.d \
 MCAL/PORT/PORT_program.d
 
 C_DEPS_AS_ARGS +=  \
 HAL/KEYPAD/KEYPAD_program.d \
 HAL/LCD/CLCD_program.d \
 main.d \
+MCAL/ADC/ADC_program.d \
 MCAL/DIO/DIO_program.d \
+MCAL/EXTI/EXTI_program.d \
+MCAL/GIE/GIE_program.d \
 MCAL/PORT/PORT_program.d
 
 OUTPUT_FILE_PATH +=COTS.elf
@@ -120,7 +138,28 @@ HAL/LCD/CLCD_program.o: ../HAL/LCD/CLCD_program.c
 	@echo Finished building: $<
 	
 
+MCAL/ADC/ADC_program.o: ../MCAL/ADC/ADC_program.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 MCAL/DIO/DIO_program.o: ../MCAL/DIO/DIO_program.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/EXTI/EXTI_program.o: ../MCAL/EXTI/EXTI_program.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/GIE/GIE_program.o: ../MCAL/GIE/GIE_program.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

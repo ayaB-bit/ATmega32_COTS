@@ -49,7 +49,7 @@
 	return Local_enuErrorState;
 }*/
 ///////////////////////////
-/*ES_t DIO_enuSetPortValue(u8 Copy_u8Port, u8 Copy_u8Value)
+ES_t DIO_enuSetPortValue(u8 Copy_u8Port, u8 Copy_u8Value)
 {
 	ES_t Local_enuErrorState = ES_OK;
 
@@ -63,7 +63,7 @@
 	}
 	
 	return Local_enuErrorState;
-}*/
+}
 /////////////////////////////////
 ES_t DIO_enuGetPortValue(u8 Copy_u8Port, u8* Copy_pu8Value)
 {
